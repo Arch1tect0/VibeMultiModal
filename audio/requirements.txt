@@ -1,0 +1,6 @@
+openai-whisper==20230124
+transformers
+torch
+librosa
+pandas
+spacy
