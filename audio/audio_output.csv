@@ -1,0 +1,21 @@
+Call_ID,Transcript,Extracted_Event,Location,Sentiment,Urgency_Score
+AUD-001, I just killed my daughter. You what? I just killed my daughter.,Homicide,Unknown,Distressed,0.67
+AUD-002, I'm Dillon Pearson and I just killed two people.,Homicide,Unknown,Distressed,0.67
+AUD-003, Hello?,Unknown,Unknown,Calm,0.0
+AUD-004," How you doing? I'd like to report like tumor or double murder in Cambridge Arms. Okay, do you know the answer? Well.",Homicide,Unknown,Concerned,0.33
+AUD-005, So we're aware of it. OK.,Unknown,Unknown,Calm,0.0
+AUD-006, I'll play just crashed. Okay. You said three miles south of Union Reservoir?,Traffic Accident,Unknown,Concerned,0.33
+AUD-007," Um, I took some pills and the pills made me go mad and I'm...",Medical Emergency,Unknown,Concerned,0.33
+AUD-008," Well, I just got a phone call saying that my friend, she lives in the basement apartment of that house and apparently the boy",Unknown,Unknown,Calm,0.0
+AUD-009," Yes, I'm staring at my bed in the back. I understand where you are.",Unknown,Unknown,Calm,0.0
+AUD-010," Each man, I believe, may have a possible, have one overdose.",Unknown,Unknown,Calm,0.0
+AUD-011, My girlfriend left last night. We were at the Stevens Bar and staying in the hotel there.,Unknown,the Stevens Bar,Calm,0.0
+AUD-012," I'm your ambulance and police officer. Okay, you need a police officer? Yeah.",Unknown,Unknown,Calm,0.0
+AUD-013, A woman came in her house screaming that her son had shot her husband.,Shooting,Unknown,Concerned,0.33
+AUD-014," I cut my voice, fell asleep in the bathtub and I think she dead. What's the address?",Homicide,Unknown,Distressed,0.67
+AUD-015," Okay, 134 transferring you is shooting with injuries at 572 Prez.",Unknown,Unknown,Concerned,0.33
+AUD-016, it just crashed into the Hudson River. A U.S. air,Traffic Accident,the Hudson River,Concerned,0.33
+AUD-017, a car ran through a what ran through a car ran through a,Unknown,Unknown,Calm,0.0
+AUD-018, My husband is up in the attic and he's not responding.,Unknown,Unknown,Concerned,0.33
+AUD-019," Yes, Sam. Shots fired. St. James.",Fire,St. James,Distressed,0.67
+AUD-020," Yes, I live at 90 301 South Second Street, apartment A. I got a gentle",Unknown,Unknown,Calm,0.0
