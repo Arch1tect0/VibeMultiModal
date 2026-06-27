@@ -1,0 +1,11 @@
+ultralytics
+opencv-python
+pytesseract
+pandas
+Pillow
+python-dotenv
+tqdm
+torch
+torchvision
+transformers
+numpy
