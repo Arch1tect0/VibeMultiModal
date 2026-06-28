@@ -1,10 +1,4 @@
-# Audio Analyst — Multimodal Incident Report Analyzer
-
-**Student Role:** Student 1 — Audio Analyst  
-**Modality:** Emergency audio calls / witness voice statements  
-**Output:** `audio_output.csv`
-
----
+# Audio Analyst
 
 ## Overview
 
