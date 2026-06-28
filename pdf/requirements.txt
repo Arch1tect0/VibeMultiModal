@@ -1,0 +1,27 @@
+# LESO 1033 MRAP Dynamic Extraction Pipeline
+# Python dependencies — install with: pip install -r requirements.txt
+
+# PDF-to-image conversion (requires poppler system library)
+pdf2image>=1.16.0
+
+# OCR engine Python bindings (requires tesseract-ocr system binary)
+pytesseract>=0.3.10
+
+# ──────────────────────────────────────────────────────────────
+# Standard library modules used (no install required):
+#   csv, re, sys, textwrap, pathlib, os, collections
+# ──────────────────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────
+# System dependencies (install separately — NOT via pip):
+#
+# macOS:
+#   brew install tesseract poppler
+#
+# Ubuntu/Debian:
+#   sudo apt-get install tesseract-ocr poppler-utils
+#
+# Windows:
+#   https://github.com/UB-Mannheim/tesseract/wiki
+#   https://github.com/oschwartz10612/poppler-windows/releases
+# ──────────────────────────────────────────────────────────────
