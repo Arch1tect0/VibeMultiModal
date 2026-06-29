@@ -120,7 +120,7 @@ SMOKE_PROMPTS = {
     "No Smoke": "a clear photo with no visible smoke, haze, fumes, or ash cloud",
 }
 
-RESULT_COLUMNS = ["Image_ID", "Scene_Type", "Objects_Detected", "Text_Extracted", "Fire_Detection_Confidence", "Smoke_Detection_Confidence", "Fire_Classification_Confidence", "Scene_Decision_Confidence"]
+RESULT_COLUMNS = ["Image_ID", "Scene_Type", "Objects_Detected", "Text_Extracted", "Fire_Detection_Confidence", "Smoke_Detection_Confidence", "Fire_Classification_Confidence", "Scene_Decision_Confidence", "confidence_score"]
 
 # Sign-first OCR settings. OCR now runs only inside sign-like regions by default
 # so watermark/overlay text is not written to Text_Extracted.

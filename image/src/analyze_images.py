@@ -3,7 +3,7 @@
 Main CSV intentionally contains only executive output:
 Image_ID, Scene_Type, Objects_Detected, Text_Extracted,
 Fire_Detection_Confidence, Smoke_Detection_Confidence,
-Fire_Classification_Confidence, Scene_Decision_Confidence
+Fire_Classification_Confidence, Scene_Decision_Confidence, confidence_score
 
 Detailed detector/engine audit output is written separately to:
 outputs/engine_reports/
@@ -276,6 +276,64 @@ def add_text_report(image_id: str, rows: List[Dict], ocr_result: Dict) -> None:
         )
 
 
+
+def _polarity_aware_confidence(confidence: float) -> float:
+    """Return confidence in the analysis regardless of positive/negative polarity.
+
+    Detector confidence columns often represent confidence in the positive
+    finding. For example, a fire confidence near 0 can mean the system is very
+    confident there is no fire, not that the analysis is uncertain. This helper
+    converts either strong positive or strong negative evidence into high
+    analysis confidence while leaving borderline values near 0.5 as uncertain.
+    """
+    conf = max(0.0, min(1.0, float(confidence or 0.0)))
+    return max(conf, 1.0 - conf)
+
+
+def calculate_confidence_score(
+    fire_status: str,
+    smoke_status: str,
+    final_fire_type: str,
+    fire_confidence: float,
+    smoke_confidence: float,
+    fire_classification_confidence: float,
+    scene_confidence_score: float,
+) -> float:
+    """Compute final report analysis confidence.
+
+    This is intentionally different from the detector confidence columns. It
+    estimates confidence in the overall analysis/final report, so strong
+    negative detections such as No Fire or No Smoke still count as confident
+    findings. Fire classification only contributes when a fire type was actually
+    assigned.
+    """
+    fire_analysis_conf = _polarity_aware_confidence(fire_confidence)
+    smoke_analysis_conf = _polarity_aware_confidence(smoke_confidence)
+    scene_analysis_conf = _polarity_aware_confidence(scene_confidence_score)
+
+    classification_applicable = (
+        fire_status == "Fire"
+        and final_fire_type not in {"", "None", "Unknown"}
+        and float(fire_classification_confidence or 0.0) > 0.0
+    )
+
+    if classification_applicable:
+        score = (
+            scene_analysis_conf * 0.40
+            + fire_analysis_conf * 0.25
+            + smoke_analysis_conf * 0.25
+            + float(fire_classification_confidence) * 0.10
+        )
+    else:
+        # Redistribute the classification weight when no fire type was produced.
+        score = (
+            scene_analysis_conf * 0.45
+            + fire_analysis_conf * 0.275
+            + smoke_analysis_conf * 0.275
+        )
+
+    return max(0.0, min(1.0, score))
+
 def build_main_row(
     image_path: Path,
     scene_type: str,
@@ -285,6 +343,7 @@ def build_main_row(
     smoke_confidence: float,
     fire_classification_confidence: float,
     scene_confidence_score: float,
+    confidence_score: float,
 ) -> Dict:
     return {
         "Image_ID": image_path.name,
@@ -295,6 +354,7 @@ def build_main_row(
         "Smoke_Detection_Confidence": round(float(smoke_confidence), 3),
         "Fire_Classification_Confidence": round(float(fire_classification_confidence), 3),
         "Scene_Decision_Confidence": round(float(scene_confidence_score), 3),
+        "confidence_score": round(float(confidence_score), 3),
     }
 
 
@@ -354,8 +414,17 @@ def analyze_images(
         smoke_conf = smoke_engine_confidence(smoke_status, smoke_results)
         fire_type_conf = fire_type_engine_confidence(final_fire_type, clip_type_result)
         final_conf = scene_confidence(final_decision, fire_conf, smoke_conf)
+        confidence_score = calculate_confidence_score(
+            fire_status,
+            smoke_status,
+            final_fire_type,
+            fire_conf,
+            smoke_conf,
+            fire_type_conf,
+            final_conf,
+        )
 
-        main_rows.append(build_main_row(image_path, scene_type, objects_detected, text, fire_conf, smoke_conf, fire_type_conf, final_conf))
+        main_rows.append(build_main_row(image_path, scene_type, objects_detected, text, fire_conf, smoke_conf, fire_type_conf, final_conf, confidence_score))
 
         image_id = image_path.name
         add_fire_report(image_id, report_rows["fire_detection_report"], fire_status, fire_reason, fire_conf, fire_results)

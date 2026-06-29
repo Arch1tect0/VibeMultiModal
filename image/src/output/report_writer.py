@@ -15,6 +15,7 @@ MAIN_COLUMNS = [
     "Smoke_Detection_Confidence",
     "Fire_Classification_Confidence",
     "Scene_Decision_Confidence",
+    "confidence_score",
 ]
 
 
