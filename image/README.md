@@ -1,295 +1,508 @@
-# FireDetection - independent modular fire and smoke pipeline
+# Fire and Smoke Image Analysis
 
-This version separates **fire detection** from **smoke detection** so smoke is no longer an offshoot or fallback label inside fire logic.
+This repository analyzes image folders for fire, smoke, scene context, and readable sign or plate text. It does not rely on a single detector. Instead, it runs several detectors and then combines their outputs through decision engines.
 
-The pipeline now works as:
+The important idea is that some detectors are primary classifiers and some detectors are gates or supporting evidence. For example, OpenCV flame color can locate flame-like pixels, but it is not trusted by itself as a final fire decision. Likewise, OpenCV smoke masks can locate smoke-like regions, but CLIP smoke results are used as the stronger smoke classifier unless localizer-only smoke is explicitly allowed.
 
-```text
-fire detectors  -> Fire_Status
-smoke detectors -> Smoke_Status
-scene fusion    -> Final_Decision
+---
+
+## What the pipeline detects
+
+The pipeline can produce final scene labels such as:
+
+- Fire
+- Smoke Only
+- Fire + Smoke
+- Vehicle Fire
+- Structure Fire
+- Forest Fire
+- Grass Fire
+- HazMat Fire
+- Container / Trash Fire
+- Other Fire
+- No Fire / No Smoke
+- Uncertain Fire/Smoke Scene
+
+---
+
+## Main execution flow
+
+```mermaid
+flowchart TD
+    A[Input image] --> B[Fire detectors]
+    A --> C[Smoke detectors]
+    A --> D[Context detectors]
+    A --> E[Text / OCR pipeline]
+
+    B --> B1[ViT fire classifier<br/>EdBianchi/vit-fire-detection]
+    B --> B2[OpenCV flame color mask<br/>HSV red/orange/yellow regions]
+    B --> B3[CLIP visible-fire evidence<br/>openai/clip-vit-base-patch32]
+
+    B1 --> FDE[Fire decision engine]
+    B2 --> FDE
+    B3 --> FDE
+
+    C --> C1[CLIP smoke classifier<br/>openai/clip-vit-base-patch32]
+    C --> C2[CLIP smoke-plume classifier<br/>openai/clip-vit-base-patch32]
+    C --> C3[OpenCV smoke localizers<br/>gray, dark, bright plume + texture]
+
+    C1 --> SDE[Smoke decision engine]
+    C2 --> SDE
+    C3 --> SDE
+
+    D --> D1[YOLO object detector<br/>default: yolov8m.pt]
+
+    E --> E1[Sign / plate region gate<br/>OpenCV heuristics, optional YOLO / YOLO-World]
+    E1 --> E2[Optional CLIP text gate<br/>openai/clip-vit-base-patch32]
+    E2 --> E3[Tesseract OCR]
+    E3 --> E4[Watermark / overlay filter]
+
+    FDE --> FT{Fire confirmed?}
+    FT -->|Yes| FTC[Fire type classifier<br/>CLIP ViT-B/32]
+    FT -->|No| SCENE[Scene decision engine]
+
+    FTC --> OCG[Object context gate]
+    D1 --> OCG
+    B2 --> OCG
+    OCG --> SCENE
+
+    SDE --> SCENE
+    E4 --> SCENE
+    SCENE --> OUT[CSV results, reports, annotated images]
 ```
 
-## Run
+---
 
-From the project folder:
+## Detector summary
+
+| Area | Detector name in code | Model / method | Role |
+|---|---|---|---|
+| Fire | `vit_fire` | `EdBianchi/vit-fire-detection` | Primary fire / no-fire classifier |
+| Fire | `opencv_flame` | HSV red/orange/yellow OpenCV mask | Flame localization and support evidence |
+| Fire | `clip_fire_evidence` | `openai/clip-vit-base-patch32` | Supporting visible-fire evidence |
+| Smoke | `clip_smoke` | `openai/clip-vit-base-patch32` | Primary smoke / no-smoke classifier |
+| Smoke | `clip_smoke_plume` | `openai/clip-vit-base-patch32` | Supporting smoke-plume classifier |
+| Smoke | `opencv_smoke` | OpenCV gray/white smoke mask | Smoke localization and support evidence |
+| Smoke | `opencv_dark_smoke` | OpenCV dark smoke mask | Smoke localization and support evidence |
+| Smoke | `opencv_bright_plume` | OpenCV bright plume + texture filter | Smoke localization and support evidence |
+| Context | `yolo_objects` | Ultralytics YOLO, default `yolov8m.pt` | Object context: vehicles, people, etc. |
+| Text | `ocr_text` | Sign/plate gate + Tesseract OCR | Extracts useful text only from gated regions |
+| Text gate | `sign_detector` | OpenCV heuristics, optional `yolov8s-worldv2.pt` or custom YOLO sign model | Finds sign/plate-like regions before OCR |
+| Text gate | `clip_text_gate` | `openai/clip-vit-base-patch32` | Optional gate to decide if a crop looks like readable text |
+| Fire type | `clip_fire_type` | `openai/clip-vit-base-patch32` | Classifies type of confirmed fire |
+
+---
+
+## How gating works
+
+### Fire gating
+
+Fire decision inputs:
+
+- `vit_fire`
+- `opencv_flame`
+- `clip_fire_evidence`
+
+Practical behavior:
+
+1. `vit_fire` is the strongest fire classifier.
+2. `opencv_flame` finds flame-colored regions, but color alone is not treated as reliable fire confirmation.
+3. `clip_fire_evidence` can support a fire result, especially when flame-colored regions are also present.
+4. Strong no-fire evidence can suppress weak color-only fire detections.
+5. Weak or partial fire evidence becomes `Uncertain` rather than confirmed `Fire`.
+
+### Smoke gating
+
+Smoke decision inputs:
+
+- `clip_smoke`
+- `clip_smoke_plume`
+- `opencv_smoke`
+- `opencv_dark_smoke`
+- `opencv_bright_plume`
+
+Practical behavior:
+
+1. `clip_smoke` is the primary smoke classifier.
+2. `clip_smoke_plume` is supporting evidence.
+3. OpenCV smoke detectors provide region evidence, not a final decision by themselves under the default configuration.
+4. Strong `No Smoke` from the primary CLIP smoke classifier can veto weak localizer hits.
+5. OpenCV-only smoke normally becomes `Uncertain Smoke` unless `--allow-opencv-smoke-alone` is used.
+
+### OCR gating
+
+OCR is not run freely across the whole image by default.
+
+1. `sign_detector` first searches for likely sign or plate regions.
+2. If enabled, `clip_text_gate` checks whether the crop appears to contain readable sign/plate text.
+3. Tesseract OCR runs on approved crops.
+4. Watermark and overlay text are filtered from the final output.
+
+### Fire type gating
+
+Fire type classification only runs after fire is confirmed.
+
+1. `clip_fire_type` predicts a fire category.
+2. YOLO object context can refine or override the category.
+3. If a vehicle object is near or overlapping the flame region, the scene can be classified as `Vehicle Fire`.
+
+---
+
+## Install
+
+### 1. Create and activate a virtual environment
+
+Windows Command Prompt:
+
+```cmd
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+macOS / Linux:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### 2. Install Python requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Install Tesseract OCR
+
+Tesseract is required for OCR output.
+
+On Windows, install Tesseract and then set `TESSERACT_CMD` in `.env` if Python cannot find it automatically:
+
+```text
+TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+If OCR is not needed, disable it by running without the context OCR detector:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --context-detectors yolo_objects
+```
+
+---
+
+## Basic run commands
+
+Run a folder of images:
 
 ```bash
 python -m src.analyze_images --image-dir path/to/images
 ```
 
-Or run selected dataset splits if you have `dataset/train/images`, `dataset/valid/images`, and `dataset/test/images`:
+Run a dataset split layout:
 
 ```bash
 python -m src.analyze_images --splits test
 ```
 
-## Add or remove detectors
+Expected split layout:
 
-Use command-line detector lists:
-
-```bash
-python -m src.analyze_images \
-  --image-dir path/to/images \
-  --fire-detectors vit_fire opencv_flame clip_fire_evidence \
-  --smoke-detectors clip_smoke opencv_smoke
+```text
+dataset/
+  train/images/
+  valid/images/
+  test/images/
 ```
 
-Disable smoke completely:
+Write results to a custom CSV:
 
 ```bash
-python -m src.analyze_images --image-dir path/to/images --smoke-detectors
+python -m src.analyze_images --image-dir path/to/images --csv-path outputs/my_results.csv
 ```
 
-Run only CLIP smoke:
+---
+
+## Common run examples
+
+Run all default detectors:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images
+```
+
+Run fire detection only:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --smoke-detectors --context-detectors
+```
+
+Run smoke detection only:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --fire-detectors --context-detectors
+```
+
+Run without OCR:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --context-detectors yolo_objects
+```
+
+Run without YOLO context:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --context-detectors ocr_text
+```
+
+Run only the primary fire detector:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --fire-detectors vit_fire
+```
+
+Run only the primary smoke detector:
 
 ```bash
 python -m src.analyze_images --image-dir path/to/images --smoke-detectors clip_smoke
 ```
 
-Run only OpenCV smoke:
+Use a different YOLO model:
 
 ```bash
-python -m src.analyze_images --image-dir path/to/images --smoke-detectors opencv_smoke
+python -m src.analyze_images --image-dir path/to/images --yolo-model yolov8n.pt
 ```
 
-You can also edit `.env`:
+Other valid YOLO model names may include:
 
 ```text
+yolov8n.pt
+yolov8s.pt
+yolov8m.pt
+yolov8l.pt
+yolov8x.pt
+```
+
+The default is:
+
+```text
+yolov8m.pt
+```
+
+---
+
+## Configuration
+
+Most settings can be changed in `.env` or overridden with command-line arguments.
+
+Common `.env` values:
+
+```text
+YOLO_MODEL_NAME=yolov8m.pt
+YOLO_CONFIDENCE=0.25
+USE_YOLO=true
+
+FIRE_CLASSIFIER_MODEL=EdBianchi/vit-fire-detection
+FIRE_THRESHOLD=0.60
+CLIP_MODEL=openai/clip-vit-base-patch32
+CLIP_VISIBLE_FIRE_THRESHOLD=0.42
+
+CLIP_SMOKE_THRESHOLD=0.42
+CLIP_SMOKE_PLUME_THRESHOLD=0.34
+OPENCV_SMOKE_THRESHOLD=0.015
+OPENCV_DARK_SMOKE_THRESHOLD=0.010
+OPENCV_BRIGHT_PLUME_THRESHOLD=0.020
+
 ENABLED_FIRE_DETECTORS=vit_fire,opencv_flame,clip_fire_evidence
-ENABLED_SMOKE_DETECTORS=clip_smoke,opencv_smoke
+ENABLED_SMOKE_DETECTORS=clip_smoke,clip_smoke_plume,opencv_smoke,opencv_dark_smoke,opencv_bright_plume
 ENABLED_CONTEXT_DETECTORS=yolo_objects,ocr_text
 ```
 
-## New decision columns
-
-The most important output columns are:
-
-| Column | Meaning |
-|---|---|
-| `Fire_Status` | Fire-only result: `Fire`, `No Fire`, or `Uncertain` |
-| `Fire_Status_Reason` | Why the fire decision was made |
-| `Fire_Triggered_Detectors` | Fire detectors that drove the fire decision |
-| `Smoke_Status` | Smoke-only result: `Smoke`, `No Smoke`, or `Uncertain Smoke` |
-| `Smoke_Reason` | Why the smoke decision was made |
-| `Smoke_Triggered_Detectors` | Smoke detectors that drove the smoke decision |
-| `Final_Decision` | Combined scene result: `Fire + Smoke`, `Fire`, `Smoke Only`, `Uncertain`, or `No Fire / No Smoke` |
-| `Final_Reason` | Why the final scene decision was made |
-
-Detector-specific columns remain separate:
+OCR/sign gate settings:
 
 ```text
-ViT_Fire_Status
-OpenCV_Flame_Status
-CLIP_Fire_Evidence
-CLIP_Smoke_Status
-OpenCV_Smoke_Status
+SIGN_DETECTION_ENABLED=true
+OCR_ALLOW_FULL_IMAGE_FALLBACK=false
+CLIP_TEXT_GATE_ENABLED=true
+CLIP_TEXT_GATE_FAIL_OPEN=true
+OCR_MAX_REGIONS=3
 ```
 
-## Files that control the modular logic
+Optional learned sign detector settings:
 
 ```text
-src/core/fire_decision_engine.py     # combines only fire detectors
-src/core/smoke_decision_engine.py    # combines only smoke detectors
-src/core/scene_decision_engine.py    # combines fire + smoke into final scene decision
-src/detectors/clip_smoke.py          # independent CLIP smoke detector
-src/detectors/opencv_smoke.py        # independent OpenCV smoke/haze detector
-src/analyze_images.py                # detector orchestration and CSV output
-src/config.py                        # detector lists, prompts, thresholds, output columns
+SIGN_YOLO_ENABLED=false
+SIGN_YOLO_MODEL=yolov8s-worldv2.pt
+SIGN_YOLO_CONFIDENCE=0.05
+SIGN_YOLO_PROMPTS=street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign
 ```
 
-## Current smoke modules
+By default, sign detection uses OpenCV heuristics. If `SIGN_YOLO_ENABLED=true`, the code can try an Ultralytics YOLO or YOLO-World sign detector first and then fall back to OpenCV if the model is unavailable or produces no useful regions.
 
-### `clip_smoke`
+---
 
-Uses separate CLIP prompts:
+## Outputs
 
-```text
-Smoke
-No Smoke
-```
-
-This is separate from fire prompts and no longer depends on `CLIP_Fire_Evidence` returning `Smoke Only`.
-
-### `opencv_smoke`
-
-A simple HSV-based smoke/haze color detector. It is included as a transparent starting point and can be replaced later with a stronger smoke model.
-
-## Smoke tuning
-
-Lower thresholds = more sensitive.
-
-```bash
-python -m src.analyze_images \
-  --image-dir path/to/images \
-  --clip-smoke-threshold 0.35 \
-  --opencv-smoke-threshold 0.010
-```
-
-Require both smoke detectors to agree:
-
-```bash
-python -m src.analyze_images \
-  --image-dir path/to/images \
-  --smoke-require-agreement
-```
-
-## Annotation behavior
-
-Boxes only appear for detectors that localize image regions:
-
-| Detector | Annotation |
-|---|---|
-| OpenCV flame | Red fire-region box |
-| OpenCV smoke | Light smoke-region box |
-| YOLO objects | Blue object boxes |
-| ViT fire | No box; image-level classifier |
-| CLIP fire/smoke | No box; image-level classifier |
-
-## Notes
-
-This first implementation keeps the existing fire detector behavior largely intact while making smoke independent. The smoke logic is intentionally modular so you can add a future YOLO smoke model, segmentation model, or custom smoke classifier without changing fire logic.
-
-
-## Task-based source layout
-
-Detector code is now organized by task rather than in one flat detector folder:
-
-```text
-src/tasks/
-  fire_detection/       # ViT fire, OpenCV flame, CLIP visible-fire evidence
-  smoke_detection/      # CLIP smoke and OpenCV smoke localization
-  fire_classification/  # fire type classification
-  object_detection/     # YOLO scene/reference objects
-  text_extraction/      # OCR
-  shared/               # shared CLIP helpers
-```
-
-The decision engines remain in `src/core/` so detection logic and final decision logic stay separate.
-
-To add or remove whole detectors, edit `src/config.py` or use CLI options such as:
-
-```bash
-python -m src.analyze_images --fire-detectors vit_fire opencv_flame --smoke-detectors opencv_smoke
-```
-
-## Output structure
-
-The main CSV is intentionally slim and is written to:
+Main output:
 
 ```text
 outputs/results.csv
 ```
 
-It contains only executive fields:
+Annotated images:
 
 ```text
-Image_ID, Scene_Type, Objects_Detected, Text_Extracted, Fire_Detection_Confidence, Smoke_Detection_Confidence, Fire_Classification_Confidence, Scene_Decision_Confidence
+outputs/annotated_images/
 ```
 
-`Scene_Type` now returns the determined fire type when a fire exists, such as `Vehicle Fire`, `Structure Fire`, `Grass Fire`, `Forest Fire`, `Container / Trash Fire`, or `Other Fire`. If no fire is detected, it falls back to labels such as `Smoke Only`, `Vehicle / Accident Scene`, `Uncertain Fire/Smoke Scene`, or `No Fire / Unknown Scene`.
-
-The confidence columns are broken out by engine instead of using one generic score:
-
-| Column | Meaning |
-|---|---|
-| `Fire_Detection_Confidence` | Confidence from the fire detection engine |
-| `Smoke_Detection_Confidence` | Confidence from the smoke detection engine |
-| `Fire_Classification_Confidence` | Confidence from the fire-type classification engine |
-| `Scene_Decision_Confidence` | Confidence from the final scene fusion engine |
-
-Detailed method-level audit reports are written separately to:
+Detailed method reports:
 
 ```text
 outputs/engine_reports/
-  fire_detection_report.csv
-  smoke_detection_report.csv
-  fire_classification_report.csv
-  scene_decision_report.csv
 ```
 
-Each engine report includes the engine final decision, the engine confidence, each method's decision, each method's confidence, and any available reason/localization/annotation information.
+The main CSV is intentionally compact. Important columns include:
 
-## Smoke detection iteration: additional plume detectors
+| Column | Meaning |
+|---|---|
+| `Image_ID` | Image filename |
+| `Scene_Type` | Final scene label or fire type |
+| `Objects_Detected` | YOLO context object summary |
+| `Text_Extracted` | OCR text from gated sign/plate regions |
+| `Fire_Detection_Confidence` | Fire decision confidence |
+| `Smoke_Detection_Confidence` | Smoke decision confidence |
+| `Fire_Classification_Confidence` | Fire type classification confidence |
+| `Scene_Decision_Confidence` | Final scene decision confidence |
 
-This version expands smoke detection so it no longer depends on a single CLIP prompt plus one gray-color OpenCV mask.
+---
 
-Default smoke detectors now run as separate modules:
-
-- `clip_smoke`: generic image-level smoke classifier.
-- `clip_smoke_plume`: CLIP classifier with explicit large-plume and cloud/fog negatives.
-- `opencv_smoke`: original light gray/white smoke-color localizer.
-- `opencv_dark_smoke`: dark/black smoke localizer.
-- `opencv_bright_plume`: bright/white plume localizer that allows very bright smoke and filters uniform sky using texture.
-
-Smoke localizers can annotate images. CLIP smoke modules classify the image but do not draw boxes.
-
-Useful tuning options:
-
-```bash
-python -m src.analyze_images \
-  --image-dir path/to/images \
-  --clip-smoke-threshold 0.42 \
-  --clip-smoke-plume-threshold 0.34 \
-  --opencv-smoke-threshold 0.015 \
-  --opencv-dark-smoke-threshold 0.010 \
-  --opencv-bright-plume-threshold 0.020
-```
-
-To test detectors independently:
-
-```bash
-python -m src.analyze_images --image-dir path/to/images --smoke-detectors clip_smoke_plume
-python -m src.analyze_images --image-dir path/to/images --smoke-detectors opencv_bright_plume
-python -m src.analyze_images --image-dir path/to/images --smoke-detectors opencv_dark_smoke
-```
-
-The smoke report at `outputs/engine_reports/smoke_detection_report.csv` shows each method's decision and confidence so false positives and false negatives can be traced to a specific detector.
-
-## Registry-based detector execution
-
-This version runs detectors through explicit registries instead of hardcoded `if` blocks in `src/analyze_images.py`.
-
-Registry files:
+## Source layout
 
 ```text
-src/core/detector_registry.py
-src/tasks/fire_detection/registry.py
-src/tasks/smoke_detection/registry.py
-src/tasks/object_detection/registry.py
+src/
+  analyze_images.py
+  config.py
+
+  core/
+    fire_decision_engine.py
+    smoke_decision_engine.py
+    scene_decision_engine.py
+    decision_engine.py
+
+  tasks/
+    fire_detection/
+      vit_fire.py
+      opencv_flame.py
+      clip_fire_evidence.py
+
+    smoke_detection/
+      clip_smoke.py
+      clip_smoke_plume.py
+      opencv_smoke.py
+      opencv_dark_smoke.py
+      opencv_bright_plume.py
+
+    fire_classification/
+      clip_fire_type.py
+
+    object_detection/
+      yolo_objects.py
+
+    text_extraction/
+      sign_detector.py
+      clip_text_gate.py
+      ocr_text.py
+      watermark_filter.py
+
+    shared/
+      clip_common.py
 ```
 
-To add a smoke detector:
+---
 
-1. Add the detector implementation under `src/tasks/smoke_detection/`.
-2. Register it in `src/tasks/smoke_detection/registry.py`.
-3. Add its name to `ENABLED_SMOKE_DETECTORS` in `src/config.py` or pass it with `--smoke-detectors`.
+## Troubleshooting
 
-Only configured detectors are shown in the engine reports. If a configured detector is misspelled or fails at runtime, the report shows `Unknown Detector` or `Execution Error` instead of silently displaying stale `Not Run` rows.
+### YOLO weights are too large for Git
 
-## Optional learned street/highway sign detection for text extraction
+Do not commit model weights. Add these patterns to `.gitignore`:
 
-The OCR gate now tries an optional learned sign detector before the existing
-OpenCV color/contour heuristics. This is intended to make the upstream text
-filter less aggressive for street signs, highway/route signs, traffic signs,
-and STOP signs.
-
-Recommended `.env` settings:
-
-```env
-SIGN_YOLO_ENABLED=true
-# Best: point this at a custom traffic/street-sign YOLO checkpoint.
-# Zero-shot fallback: use an Ultralytics YOLO-World checkpoint.
-SIGN_YOLO_MODEL=yolov8s-worldv2.pt
-SIGN_YOLO_CONFIDENCE=0.05
-SIGN_YOLO_PROMPTS=street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign
-SIGN_YOLO_CLASS_KEYWORDS=sign,street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign
+```text
+*.pt
+*.pth
+*.onnx
+*.weights
+runs/
+weights/
 ```
 
-If `ultralytics` or the model weights are unavailable, the pipeline does not
-fail; it silently falls back to the existing blue/green/red sign detector,
-license-plate detector, and generic contour detector.
+If a weight file was already staged, remove it from Git tracking while keeping it on disk:
 
-For best results, replace `SIGN_YOLO_MODEL` with a traffic-sign detector trained
-on street/highway sign classes. YOLO-World is useful for quick tests, but a
-specialized checkpoint will usually be more reliable on small signs.
+```bash
+git rm --cached path/to/model.pt
+```
+
+If the file was already committed, it must be removed from commit history before pushing.
+
+### CUDA is not available
+
+The code automatically uses CUDA when available and CPU otherwise. CPU runs are slower, especially for CLIP and ViT models.
+
+### Tesseract is not found
+
+Set `TESSERACT_CMD` in `.env` to the full path of the Tesseract executable.
+
+### OCR is too noisy
+
+Keep full-image OCR disabled:
+
+```text
+OCR_ALLOW_FULL_IMAGE_FALLBACK=false
+```
+
+Use gated OCR only:
+
+```text
+SIGN_DETECTION_ENABLED=true
+CLIP_TEXT_GATE_ENABLED=true
+```
+
+### Smoke detections are too sensitive
+
+Increase these thresholds:
+
+```text
+CLIP_SMOKE_THRESHOLD=0.50
+CLIP_SMOKE_PLUME_THRESHOLD=0.40
+OPENCV_SMOKE_THRESHOLD=0.025
+```
+
+### Smoke detections are not sensitive enough
+
+Lower these thresholds:
+
+```text
+CLIP_SMOKE_THRESHOLD=0.35
+CLIP_SMOKE_PLUME_THRESHOLD=0.30
+OPENCV_SMOKE_THRESHOLD=0.010
+```
+
+Use OpenCV-only smoke only if you explicitly want high sensitivity and can tolerate false positives:
+
+```bash
+python -m src.analyze_images --image-dir path/to/images --allow-opencv-smoke-alone
+```
+
+---
+
+## Notes for development
+
+- Add new fire detectors under `src/tasks/fire_detection/` and register them in the fire registry.
+- Add new smoke detectors under `src/tasks/smoke_detection/` and register them in the smoke registry.
+- Keep detector output separate from decision logic.
+- Put final combination logic in the decision engines, not inside individual detectors.
+- Treat OpenCV region detectors as support/localization unless a decision engine explicitly promotes them.
