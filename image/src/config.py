@@ -137,23 +137,50 @@ OCR_MAX_PUNCTUATION_FRACTION = float(os.getenv("OCR_MAX_PUNCTUATION_FRACTION", "
 OCR_MIN_TOKEN_LENGTH = int(os.getenv("OCR_MIN_TOKEN_LENGTH", "2"))
 OCR_MIN_MEANINGFUL_TOKENS = int(os.getenv("OCR_MIN_MEANINGFUL_TOKENS", "1"))
 OCR_STREET_SIGN_MIN_CONFIDENCE = float(os.getenv("OCR_STREET_SIGN_MIN_CONFIDENCE", "0.20"))
-OCR_STREET_SIGN_SCALE_FACTOR = float(os.getenv("OCR_STREET_SIGN_SCALE_FACTOR", "3.0"))
-OCR_LICENSE_PLATE_MIN_CONFIDENCE = float(os.getenv("OCR_LICENSE_PLATE_MIN_CONFIDENCE", "0.18"))
-OCR_PSM_VALUES = os.getenv("OCR_PSM_VALUES", "6,7,11")
+OCR_STREET_SIGN_SCALE_FACTOR = float(os.getenv("OCR_STREET_SIGN_SCALE_FACTOR", "4.0"))
+OCR_LICENSE_PLATE_MIN_CONFIDENCE = float(os.getenv("OCR_LICENSE_PLATE_MIN_CONFIDENCE", "0.0"))
+OCR_PSM_VALUES = os.getenv("OCR_PSM_VALUES", "6")
 
 TESSERACT_CONFIG = os.getenv("TESSERACT_CONFIG", "--oem 3 --psm 6")
+
+
+# Large street-name signs can occupy much of the image, especially close-up
+# mobile photos. Keep color-sign filtering permissive enough to pass those
+# large green panels to OCR.
+SIGN_COLOR_MAX_AREA_PERCENT = float(os.getenv("SIGN_COLOR_MAX_AREA_PERCENT", "0.45"))
+
+# Grayscale vehicle scenes produce many false plate-like crops and require
+# slower specialized handling. Skip plate candidates on near-grayscale images
+# unless explicitly enabled.
+LICENSE_PLATE_SKIP_LOW_SATURATION = os.getenv("LICENSE_PLATE_SKIP_LOW_SATURATION", "true").strip().lower() == "true"
+LICENSE_PLATE_MIN_IMAGE_SATURATION = float(os.getenv("LICENSE_PLATE_MIN_IMAGE_SATURATION", "12"))
 
 SIGN_MIN_AREA_PERCENT = float(os.getenv("SIGN_MIN_AREA_PERCENT", "0.002"))
 SIGN_MAX_AREA_PERCENT = float(os.getenv("SIGN_MAX_AREA_PERCENT", "0.35"))
 SIGN_MIN_WIDTH = int(os.getenv("SIGN_MIN_WIDTH", "28"))
 SIGN_MIN_HEIGHT = int(os.getenv("SIGN_MIN_HEIGHT", "14"))
-SIGN_MAX_REGIONS = int(os.getenv("SIGN_MAX_REGIONS", "5"))
+SIGN_MAX_REGIONS = int(os.getenv("SIGN_MAX_REGIONS", "4"))
 SIGN_MIN_CONFIDENCE = float(os.getenv("SIGN_MIN_CONFIDENCE", "0.38"))
 SIGN_CROP_PADDING = int(os.getenv("SIGN_CROP_PADDING", "8"))
 SIGN_EDGE_MARGIN_PERCENT = float(os.getenv("SIGN_EDGE_MARGIN_PERCENT", "0.035"))
 SIGN_MAX_EDGE_TOUCH_FRACTION = float(os.getenv("SIGN_MAX_EDGE_TOUCH_FRACTION", "0.5"))
 SIGN_CANNY_LOW = int(os.getenv("SIGN_CANNY_LOW", "60"))
 SIGN_CANNY_HIGH = int(os.getenv("SIGN_CANNY_HIGH", "160"))
+
+# Optional learned sign detector for OCR crop proposals. A custom traffic/street
+# sign checkpoint is best. YOLO-World can be used zero-shot with prompts. If
+# ultralytics/model weights are unavailable, the sign detector silently falls
+# back to the existing OpenCV color/contour paths.
+SIGN_YOLO_ENABLED = os.getenv("SIGN_YOLO_ENABLED", "false").strip().lower() == "true"
+SIGN_YOLO_MODEL = os.getenv("SIGN_YOLO_MODEL", "yolov8s-worldv2.pt").strip()
+SIGN_YOLO_CONFIDENCE = float(os.getenv("SIGN_YOLO_CONFIDENCE", "0.05"))
+SIGN_YOLO_IOU = float(os.getenv("SIGN_YOLO_IOU", "0.50"))
+SIGN_YOLO_PROMPTS = os.getenv("SIGN_YOLO_PROMPTS", "street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign")
+SIGN_YOLO_CLASS_KEYWORDS = os.getenv("SIGN_YOLO_CLASS_KEYWORDS", "sign,street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign")
+SIGN_YOLO_MIN_AREA_PERCENT = float(os.getenv("SIGN_YOLO_MIN_AREA_PERCENT", "0.0002"))
+SIGN_YOLO_MAX_AREA_PERCENT = float(os.getenv("SIGN_YOLO_MAX_AREA_PERCENT", "0.40"))
+SIGN_YOLO_MIN_WIDTH = int(os.getenv("SIGN_YOLO_MIN_WIDTH", "12"))
+SIGN_YOLO_MIN_HEIGHT = int(os.getenv("SIGN_YOLO_MIN_HEIGHT", "8"))
 
 WATERMARK_EDGE_MARGIN_PERCENT = float(os.getenv("WATERMARK_EDGE_MARGIN_PERCENT", "0.08"))
 WATERMARK_MAX_WIDTH_FRACTION = float(os.getenv("WATERMARK_MAX_WIDTH_FRACTION", "0.55"))
@@ -166,3 +193,34 @@ WATERMARK_KEYWORDS = [
     ).split(",")
     if term.strip()
 ]
+
+# Fast OCR tuning: keep OCR on high-value sign/plate regions only.
+OCR_MAX_REGIONS = int(os.getenv("OCR_MAX_REGIONS", "3"))
+OCR_SKIP_TINY_REGION_WHEN_LARGE_SIGN_PRESENT = os.getenv("OCR_SKIP_TINY_REGION_WHEN_LARGE_SIGN_PRESENT", "true").strip().lower() == "true"
+OCR_TINY_REGION_AREA_PERCENT = float(os.getenv("OCR_TINY_REGION_AREA_PERCENT", "0.006"))
+LICENSE_PLATE_MIN_Y_PERCENT = float(os.getenv("LICENSE_PLATE_MIN_Y_PERCENT", "0.30"))
+# OCR final-output validation. Keep failed/rejected OCR out of Text_Extracted
+# unless explicitly requested for diagnostics.
+OCR_INCLUDE_REJECTED_WATERMARK_TEXT = os.getenv("OCR_INCLUDE_REJECTED_WATERMARK_TEXT", "false").strip().lower() == "true"
+OCR_MIN_FINAL_TYPE_CONFIDENCE = float(os.getenv("OCR_MIN_FINAL_TYPE_CONFIDENCE", "0.50"))
+OCR_SUPPRESS_SIGN_WHEN_PLATE_CONTEXT = os.getenv("OCR_SUPPRESS_SIGN_WHEN_PLATE_CONTEXT", "true").strip().lower() == "true"
+OCR_PLATE_CHAR_WHITELIST = os.getenv("OCR_PLATE_CHAR_WHITELIST", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+OCR_LICENSE_PLATE_ALLOW_DIGITS_ONLY = os.getenv("OCR_LICENSE_PLATE_ALLOW_DIGITS_ONLY", "true").strip().lower() == "true"
+OCR_LICENSE_PLATE_SCALE_FACTOR = float(os.getenv("OCR_LICENSE_PLATE_SCALE_FACTOR", "5.0"))
+OCR_LICENSE_PLATE_MIN_FINAL_CONFIDENCE = float(os.getenv("OCR_LICENSE_PLATE_MIN_FINAL_CONFIDENCE", "0.50"))
+SIGN_COLOR_LOWER_IMAGE_PLATE_RECLASSIFY = os.getenv("SIGN_COLOR_LOWER_IMAGE_PLATE_RECLASSIFY", "true").strip().lower() == "true"
+SIGN_COLOR_PLATE_RECLASSIFY_MIN_Y_PERCENT = float(os.getenv("SIGN_COLOR_PLATE_RECLASSIFY_MIN_Y_PERCENT", "0.45"))
+SIGN_COLOR_PLATE_RECLASSIFY_MAX_AREA_PERCENT = float(os.getenv("SIGN_COLOR_PLATE_RECLASSIFY_MAX_AREA_PERCENT", "0.030"))
+SIGN_COLOR_PLATE_RECLASSIFY_MAX_ASPECT = float(os.getenv("SIGN_COLOR_PLATE_RECLASSIFY_MAX_ASPECT", "3.8"))
+
+OCR_MAX_LICENSE_PLATE_REGIONS = int(os.getenv("OCR_MAX_LICENSE_PLATE_REGIONS", "1"))
+
+# Optional CLIP gate before OCR. This is a text-presence detector, not OCR.
+# It asks whether a candidate crop looks like readable sign/plate text before
+# paying the cost of Tesseract. If CLIP cannot load, fail-open keeps OCR working.
+CLIP_TEXT_GATE_ENABLED = os.getenv("CLIP_TEXT_GATE_ENABLED", "true").strip().lower() == "true"
+CLIP_TEXT_GATE_FAIL_OPEN = os.getenv("CLIP_TEXT_GATE_FAIL_OPEN", "true").strip().lower() == "true"
+CLIP_TEXT_GATE_MIN_POSITIVE = float(os.getenv("CLIP_TEXT_GATE_MIN_POSITIVE", "0.42"))
+CLIP_TEXT_GATE_SIGN_MIN_POSITIVE = float(os.getenv("CLIP_TEXT_GATE_SIGN_MIN_POSITIVE", "0.38"))
+CLIP_TEXT_GATE_PLATE_MIN_POSITIVE = float(os.getenv("CLIP_TEXT_GATE_PLATE_MIN_POSITIVE", "0.34"))
+CLIP_TEXT_GATE_MIN_MARGIN = float(os.getenv("CLIP_TEXT_GATE_MIN_MARGIN", "0.04"))

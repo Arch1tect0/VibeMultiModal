@@ -266,3 +266,30 @@ To add a smoke detector:
 3. Add its name to `ENABLED_SMOKE_DETECTORS` in `src/config.py` or pass it with `--smoke-detectors`.
 
 Only configured detectors are shown in the engine reports. If a configured detector is misspelled or fails at runtime, the report shows `Unknown Detector` or `Execution Error` instead of silently displaying stale `Not Run` rows.
+
+## Optional learned street/highway sign detection for text extraction
+
+The OCR gate now tries an optional learned sign detector before the existing
+OpenCV color/contour heuristics. This is intended to make the upstream text
+filter less aggressive for street signs, highway/route signs, traffic signs,
+and STOP signs.
+
+Recommended `.env` settings:
+
+```env
+SIGN_YOLO_ENABLED=true
+# Best: point this at a custom traffic/street-sign YOLO checkpoint.
+# Zero-shot fallback: use an Ultralytics YOLO-World checkpoint.
+SIGN_YOLO_MODEL=yolov8s-worldv2.pt
+SIGN_YOLO_CONFIDENCE=0.05
+SIGN_YOLO_PROMPTS=street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign
+SIGN_YOLO_CLASS_KEYWORDS=sign,street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign
+```
+
+If `ultralytics` or the model weights are unavailable, the pipeline does not
+fail; it silently falls back to the existing blue/green/red sign detector,
+license-plate detector, and generic contour detector.
+
+For best results, replace `SIGN_YOLO_MODEL` with a traffic-sign detector trained
+on street/highway sign classes. YOLO-World is useful for quick tests, but a
+specialized checkpoint will usually be more reliable on small signs.

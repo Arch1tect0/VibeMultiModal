@@ -197,72 +197,83 @@ def add_scene_report(image_id: str, rows: List[Dict], final_decision: str, final
 def text_engine_confidence(ocr_result: Dict) -> float:
     if not ocr_result:
         return 0.0
-    return float(ocr_result.get("confidence", 0.0))
+    ocr_results = ocr_result.get("ocr_results", []) or []
+    type_confidences = [float(r.get("type_confidence", 0.0) or 0.0) for r in ocr_results]
+    if type_confidences:
+        return max(type_confidences)
+    return float(ocr_result.get("confidence", 0.0) or 0.0)
+
+
+def _format_text_summary_from_results(ocr_result: Dict) -> str:
+    """Return the user-facing typed OCR summary.
+
+    Expected shape:
+    License plate: "57584hgj" 30% | Street Sign: "STOP" 80%
+
+    The detector normally supplies this as ocr_result["text"]. This fallback
+    keeps results.csv populated even if an older registry result only contains
+    per-crop OCR details.
+    """
+    text = (ocr_result or {}).get("text", "") or ""
+    if text:
+        return text
+
+    items = []
+    seen = set()
+    for r in (ocr_result or {}).get("ocr_results", []) or []:
+        raw_text = (r.get("text") or r.get("raw_text") or "").strip()
+        if not raw_text:
+            continue
+        text_type = r.get("text_type") or ("Watermark" if not r.get("text") else "Text")
+        conf = float(r.get("type_confidence", r.get("confidence", 0.0)) or 0.0)
+        key = (text_type.lower(), raw_text.lower())
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append((conf, text_type, raw_text))
+
+    items.sort(reverse=True, key=lambda item: item[0])
+    return " | ".join(f'{typ}: "{txt}" {int(round(conf * 100))}%' for conf, typ, txt in items)
 
 
 def add_text_report(image_id: str, rows: List[Dict], ocr_result: Dict) -> None:
     ocr_result = ocr_result or {}
-    engine_decision = ocr_result.get("status", "Not Run")
+    typed_summary = _format_text_summary_from_results(ocr_result)
+    engine_decision = "Text Extracted" if typed_summary else ocr_result.get("status", "Not Run")
     engine_conf = text_engine_confidence(ocr_result)
     sign_regions = ocr_result.get("sign_regions", []) or []
     ocr_results = ocr_result.get("ocr_results", []) or []
-    watermark_filtered = ocr_result.get("watermark_filtered", []) or []
 
     if sign_regions:
         best_sign = max(sign_regions, key=lambda r: float(r.get("confidence", 0.0)))
-        sign_decision = f"{len(sign_regions)} Sign Region(s)"
+        sign_decision = f"{len(sign_regions)} Gate Region(s)"
         sign_conf = float(best_sign.get("confidence", 0.0))
-        sign_reason = best_sign.get("reason", "sign-like region detected")
+        sign_reason = best_sign.get("reason", "text gate region detected")
         localized = "Yes"
     else:
-        sign_decision = "No Sign Detected"
+        sign_decision = "No Gate Region"
         sign_conf = 0.0
-        sign_reason = "no sign-like crop region found"
+        sign_reason = "no license-plate/street-sign gate region found"
         localized = "No"
 
+    # Keep the gate row because it explains the confidence source, but make the
+    # OCR row itself the exact typed summary requested for review.
     add_method_report_row(
         rows, image_id, "Text Extraction", engine_decision, engine_conf,
-        "sign_detector", sign_decision, sign_conf, sign_reason, localized, localized,
+        "text_gate", sign_decision, sign_conf, sign_reason, localized, localized,
     )
 
-    accepted = [r for r in ocr_results if r.get("text")]
-    rejected = [r for r in ocr_results if r.get("raw_text") and not r.get("text")]
-    if accepted:
-        ocr_text = " | ".join(r.get("text", "") for r in accepted if r.get("text"))
-        ocr_conf = max(float(r.get("confidence", 0.0)) for r in accepted)
-        ocr_decision = "Text Extracted"
-        ocr_reason = ocr_text
-    elif ocr_results:
-        ocr_conf = max(float(r.get("confidence", 0.0)) for r in ocr_results)
-        ocr_decision = "No Accepted Text"
-        reasons = [r.get("reject_reason", "") for r in ocr_results if r.get("reject_reason")]
-        ocr_reason = "; ".join(reasons[:3]) if reasons else "OCR ran on sign crop(s), but no text survived confidence/watermark filters"
+    if typed_summary:
+        typed_conf = max((float(r.get("type_confidence", 0.0) or 0.0) for r in ocr_results), default=engine_conf)
+        add_method_report_row(
+            rows, image_id, "Text Extraction", engine_decision, engine_conf,
+            "ocr_typed_text", "Typed Text Extracted", typed_conf, typed_summary, "No", "No",
+        )
     else:
-        ocr_conf = 0.0
-        ocr_decision = "OCR Not Run"
-        ocr_reason = ocr_result.get("reason", "OCR skipped")
-
-    add_method_report_row(
-        rows, image_id, "Text Extraction", engine_decision, engine_conf,
-        "ocr_text", ocr_decision, ocr_conf, ocr_reason, "No", "No",
-    )
-
-    if rejected or watermark_filtered:
-        wm_decision = "Watermark/Overlay Filtered"
-        if watermark_filtered:
-            wm_reason = " | ".join(watermark_filtered[:5])
-        else:
-            wm_reason = "; ".join(r.get("reject_reason", "OCR crop rejected") for r in rejected[:5])
-        wm_conf = max((float(r.get("confidence", 0.0)) for r in rejected), default=0.0)
-    else:
-        wm_decision = "No Watermark Text Filtered"
-        wm_reason = "no OCR text was rejected as watermark/overlay"
-        wm_conf = 0.0
-
-    add_method_report_row(
-        rows, image_id, "Text Extraction", engine_decision, engine_conf,
-        "watermark_filter", wm_decision, wm_conf, wm_reason, "No", "No",
-    )
+        add_method_report_row(
+            rows, image_id, "Text Extraction", engine_decision, engine_conf,
+            "ocr_typed_text", "No Text Extracted", 0.0, ocr_result.get("reason", "OCR did not produce usable typed text"), "No", "No",
+        )
 
 
 def build_main_row(
@@ -336,7 +347,8 @@ def analyze_images(
         final_fire_type, fire_type_reason = decision_engine.infer_fire_type(fire_status, clip_type_result, reference_detections, flame_region)
         object_names = [d["class_name"] for d in reference_detections]
         scene_type = scene_decision_engine.classify_scene(final_decision, fire_status, smoke_status, final_fire_type, object_names)
-        text = context_results.get("ocr_text", {}).get("text", "")
+        ocr_context = context_results.get("ocr_text", {})
+        text = _format_text_summary_from_results(ocr_context)
 
         fire_conf = fire_engine_confidence(fire_status, fire_results)
         smoke_conf = smoke_engine_confidence(smoke_status, smoke_results)

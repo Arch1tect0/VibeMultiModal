@@ -4,7 +4,7 @@ Image_ID,Scene_Type,Objects_Detected,Text_Extracted,Fire_Detection_Confidence,Sm
 0ce61215-6d34-49f9-aa6d-5f0feed430f8_jpg.rf.d77fd2f7f1c62515a4946b3cf50bc323.jpg,Grass Fire,None,,1.0,1.0,0.954,1.0
 0d129596-761e-40bd-b132-ada4ade34a82_jpg.rf.150d5b8b6c3ec0ccf19e8a958a900581.jpg,Structure Fire,"bus, person",,1.0,0.988,0.962,1.0
 0d1ad876-45a6-46c0-aaaa-c33c4324ba82_jpg.rf.dd763d52bfaab76c7a6b3a19b09b84da.jpg,Structure Fire,None,,1.0,1.0,0.43,1.0
-0e827fe2-bd92-48df-a592-6674930e85fc_jpg.rf.e422222b6016873326209d293e178360.jpg,Grass Fire,person,,1.0,0.988,0.65,1.0
+0e827fe2-bd92-48df-a592-6674930e85fc_jpg.rf.e422222b6016873326209d293e178360.jpg,Grass Fire,person,"Watermark: ""SEH"" 20%",1.0,0.988,0.65,1.0
 11c5f0e8-f0ea-45a1-bcc2-dfe3b58c576a_jpg.rf.5a3022a25a4930cc0fdfe2123cebea81.jpg,Vehicle Fire,None,,1.0,0.854,0.694,1.0
 130055ff-b422-45e1-9ff2-edc359690f32_jpg.rf.759bfa89f9bd226816797aa38f5ee1ee.jpg,Forest Fire,None,,1.0,0.978,0.793,0.989
 13d44c3b-f6dd-46c9-a705-7c2a00bcc3af_jpg.rf.543bc095b6603c9636fcc1d79665747d.jpg,Other Fire,None,,1.0,0.557,0.391,0.778
@@ -76,7 +76,7 @@ Image_ID,Scene_Type,Objects_Detected,Text_Extracted,Fire_Detection_Confidence,Sm
 8c321db1-d800-4ef8-8568-f740e7681489_jpg.rf.e7b5aa5c8e6dc56164eb8663e8f94140.jpg,Vehicle Fire,train,,1.0,0.986,0.919,1.0
 90420_Ritter_Fire_A_031_jpg.rf.8b5b6ffd9d637cd5a3760232d1323369.jpg,Structure Fire,None,,1.0,1.0,0.31,1.0
 904cf64d-cfcb-4208-9ecb-3714a228ff07_jpg.rf.5cfa13467216d969643c398fe1e2fb04.jpg,Forest Fire,person,,1.0,0.751,0.701,0.876
-913_0_jpg.rf.85307bf4bcd7994ec332a07d91ab58fa.jpg,Other Fire,None,,1.0,0.719,0.741,0.86
+913_0_jpg.rf.85307bf4bcd7994ec332a07d91ab58fa.jpg,Other Fire,None,"Watermark: ""a"" 23%",1.0,0.719,0.741,0.86
 94660aae-d9a0-4150-847a-7d8dd45af622_jpg.rf.ebfc8829ad6fdce94874574f231f6ff2.jpg,HazMat Fire,None,,1.0,0.872,0.858,0.936
 96dcfe85-e246-4c4d-b293-fa26058374af_jpg.rf.df1f80f2a5cdc9844e8709bda69674dd.jpg,Structure Fire,None,,1.0,0.66,0.442,1.0
 9cc4584c-9259-4ce1-a19d-2ea2f24ef211_jpg.rf.9074b548e91ed7995a93dd3082416f1e.jpg,Vehicle Fire,person,,1.0,1.0,0.944,1.0
@@ -112,7 +112,7 @@ e5a7f2a5-79ec-438b-b65c-02c27de105a4_jpg.rf.bd85dbc4632ab9cbf899946e0c969ebc.jpg
 e6de565d-1df1-4500-9d7c-fe5dad8a7a20_jpg.rf.2ea4de21c5c65543f3ab02de3213b4a3.jpg,Smoke Only,None,,0.0,0.958,0.0,0.958
 e9a393ea-4c13-4e0a-a7bb-ceddab3ce7d9_jpg.rf.24fb0ba82d25a1c27e653ad26beb86a9.jpg,HazMat Fire,None,,1.0,1.0,0.675,1.0
 edc6cc18-a8c3-49ef-a296-e3c0d0d314a8_jpg.rf.2016259d11872dee8f1f390c464c5009.jpg,Grass Fire,person,,1.0,0.96,0.541,1.0
-edeca927-6dfc-4e19-823f-9dc3fcd90de6_jpg.rf.5cc071426a98e8dcf83f51861cab3d3e.jpg,Vehicle Fire,"boat, truck",,1.0,0.777,0.973,0.889
+edeca927-6dfc-4e19-823f-9dc3fcd90de6_jpg.rf.5cc071426a98e8dcf83f51861cab3d3e.jpg,Vehicle Fire,"boat, truck","Watermark: ""ARVANA"" 17%",1.0,0.777,0.973,0.889
 f8bb9f36-a7f8-43c1-97fa-d21f9f7836dc_jpg.rf.b2538ba9e503ff4592350e203f47f497.jpg,Vehicle Fire,"person, truck",,1.0,0.705,0.774,0.853
 fc688d72-a2bc-4450-82b6-82ea05fe67a3_jpg.rf.c15bbffd67a11755a402d389f58f50c3.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.953,1.0
 fdc0826b-4762-4754-aa3f-2bf978f576fa_jpg.rf.3de26b9fae34a71695b8038c16e33e6e.jpg,Vehicle Fire,"person, truck",,1.0,0.949,0.682,1.0
@@ -146,7 +146,7 @@ img--147-_jpg.rf.8598423fdc124bc48f27901c0de6f516.jpg,Vehicle Fire,"car, truck",
 img--2-_jpg.rf.033ec0febcdb0d11e41124132da94dce.jpg,Vehicle Fire,"car, person",,1.0,0.822,0.556,0.911
 img--34-_jpg.rf.89851b4bec8af64aeb0bd40f54d6d4c0.jpg,Vehicle Fire,person,,1.0,1.0,0.924,1.0
 img--40-_jpg.rf.5fdff084c22e749d814941af3394adf5.jpg,Vehicle Fire,boat,,1.0,1.0,0.901,1.0
-img--52-_jpg.rf.8ad06b6fde45c2c6ce999af96cdd64ba.jpg,Smoke Only,"bus, car",,0.0,1.0,0.0,1.0
+img--52-_jpg.rf.8ad06b6fde45c2c6ce999af96cdd64ba.jpg,Smoke Only,"bus, car","Street Sign: ""me Oo"" 65%",0.0,1.0,0.0,1.0
 img--56-_jpg.rf.dcda2421f08591c6921f641feb35a2e7.jpg,Container / Trash Fire,None,,1.0,0.888,0.588,0.944
 img--65-_jpg.rf.298ea30971c4afb886d0f812d96248b9.jpg,Vehicle Fire,None,,1.0,1.0,0.678,1.0
 img--72-_jpg.rf.c03ffeda3c5d380ff4cd0b72337a69a3.jpg,Vehicle Fire,bus,,1.0,1.0,0.996,1.0
@@ -196,18 +196,18 @@ small--95-_jpg.rf.d42032f117d64c348f4dceee287c601a.jpg,No Fire / Unknown Scene,N
 u-1813637191-1522406631-fm-26-gp-0_jpg.rf.b244bdb0b9c562da9811497422fb5433.jpg,Vehicle Fire,None,,1.0,0.888,0.721,1.0
 u-728658336-3440009586-fm-26-gp-0_jpg.rf.5293520fc435d304a8f135b8ba908ef7.jpg,Vehicle Fire,"bicycle, motorcycle, person",,1.0,0.954,0.843,1.0
 wildfire1_jpg.rf.be1e1a84b5bf5a6478ce694895edfe8b.jpg,Forest Fire,None,,1.0,1.0,0.912,1.0
-1 (2).jpg,No Fire / Unknown Scene,None,,0.0,0.951,0.0,0.0
-1.jpg,No Fire / Unknown Scene,person,,0.001,0.805,0.0,0.001
-3.jpg,Vehicle / Accident Scene,car,,0.0,0.736,0.0,0.0
-4.jpg,Smoke Only,car,,0.0,0.856,0.0,0.856
-5.jpg,Vehicle / Accident Scene,"car, person",,0.0,0.919,0.0,0.0
+1 (2).jpg,No Fire / Unknown Scene,None,"Street Sign: ""ae a y Glencrest in"" 79%",0.0,0.951,0.0,0.0
+1.jpg,No Fire / Unknown Scene,person,"Street Sign: ""A County Ra Pier Lae"" 79%",0.001,0.805,0.0,0.001
+3.jpg,Vehicle / Accident Scene,car,"Street Sign: ""Sours To west Norte Pa Turnpike Hershey Lancaster Lebanon"" 92%",0.0,0.736,0.0,0.0
+4.jpg,Smoke Only,car,"Street Sign: ""Seaward Ave 1 2 Freeway 3 2 Tt uu ak eee"" 87%",0.0,0.856,0.0,0.856
+5.jpg,Vehicle / Accident Scene,"car, person","License plate: ""00017"" 80%",0.0,0.919,0.0,0.0
 images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0.001
-00001_jpg.rf.650b3ad08b3f30815c9da117dc2f793a.jpg,Other Fire,None,,1.0,1.0,0.406,1.0
+00001_jpg.rf.650b3ad08b3f30815c9da117dc2f793a.jpg,Other Fire,None,"Watermark: ""i"" 28%",1.0,1.0,0.406,1.0
 004366d3-159d-47c4-9198-baf03bdfc0f7_jpg.rf.e895304897ea68a6bd59dc6c3d674b31.jpg,Other Fire,None,,1.0,0.908,0.893,1.0
 00485f4d-c60e-4bd3-9f4d-77c34b880dec_jpg.rf.e198859c33dd4fde42ee7b3dc2dd5ad1.jpg,Grass Fire,person,,1.0,0.91,0.856,1.0
 0078511d-ec33-45c8-8dfa-72b8747fe0cb_jpg.rf.25e0fb76b1d0ea88b98746101578b4ec.jpg,Forest Fire,None,,1.0,0.653,0.541,0.826
 01322add-8325-4971-9b82-d30209555753_jpg.rf.aabb8d5924d9f9d5d658d03ae3b10530.jpg,Structure Fire,None,,1.0,0.9,0.791,1.0
-0150ad70-4ef7-4207-a74a-e997bf15d830_jpg.rf.9dd0270e47c7110664e7a0f529a64941.jpg,Grass Fire,None,,1.0,0.891,0.679,1.0
+0150ad70-4ef7-4207-a74a-e997bf15d830_jpg.rf.9dd0270e47c7110664e7a0f529a64941.jpg,Grass Fire,None,"Street Sign: ""re or alata ok ce oa ry pe rz aM Ne Meee rae Mm io io SRA POC AEP STR AU amar aay aa aa we"" 73%",1.0,0.891,0.679,1.0
 018c2fdb-c9e1-4653-b98f-07e226b62ae5_jpg.rf.e17816dc65b06e6b50a2645bd6c769ab.jpg,Grass Fire,None,,1.0,0.624,0.953,0.812
 01973b31-8688-4673-b120-0a9a4fbfd458_jpg.rf.e6bb19c3b9211dc3b67c067e321d675b.jpg,Grass Fire,None,,1.0,1.0,0.534,1.0
 01db9f46-3b61-4c1e-9440-b43984cdd93d_jpg.rf.dffae5eb234d3ddd291e6f8474a89dc4.jpg,Vehicle Fire,car,,1.0,0.952,0.919,1.0
@@ -265,7 +265,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 11983b26-c87f-4d95-b4de-d4fd9c4367a4_jpg.rf.421b0e11bca745666f31fa84679e8e40.jpg,Structure Fire,None,,1.0,0.987,0.714,1.0
 12156288-7709-43ff-ab7f-32f7f6528782_jpg.rf.8551bdad96ef7c4d6134e8b50823f302.jpg,Vehicle Fire,"car, truck",,1.0,1.0,0.994,1.0
 1246be58-1ef3-4cf5-b775-e8c4a0830a45_jpg.rf.61813f4a435b975f147d0a017e8f5e0e.jpg,Vehicle Fire,"car, person, truck",,1.0,1.0,0.317,1.0
-124e4adf-94c2-498a-a405-8913d9706fe6_jpg.rf.949412e3aa44a2d2dd8c14ad8eb5d2a0.jpg,Other Fire,person,,1.0,0.885,0.893,1.0
+124e4adf-94c2-498a-a405-8913d9706fe6_jpg.rf.949412e3aa44a2d2dd8c14ad8eb5d2a0.jpg,Other Fire,person,"Watermark: ""S"" 15%",1.0,0.885,0.893,1.0
 12826b80-9a31-49fb-8c57-514799126d77_jpg.rf.393fbf5ffb2e0390eb689db9567be88d.jpg,Other Fire,None,,1.0,0.637,0.622,0.818
 12a473aa-909b-444a-af59-353a7ac44a93_jpg.rf.877b5b7df717df456d818eef9b06dbf0.jpg,Vehicle Fire,car,,1.0,1.0,0.988,1.0
 12c7f643-ae05-42f9-b6d1-dd2b25451d71_jpg.rf.ac6c7af06e8d825df195c790d4b01af7.jpg,Grass Fire,None,,1.0,1.0,0.608,1.0
@@ -297,7 +297,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 196bc6f8-d7ce-4edc-9bed-b2db0bb0e59c_jpg.rf.124c617fa475a6d4071eaac3768dba80.jpg,Forest Fire,None,,1.0,0.998,0.996,0.999
 19a1e517-96d1-40f5-bbae-e3714bf79940_jpg.rf.3d842b47f01df6f37855d930f0ed6c32.jpg,Vehicle Fire,None,,1.0,0.65,0.632,0.825
 19b8f9ee-c97b-44c0-b8cb-324b31e30704_jpg.rf.df9778dfa012683b20670c29d2298926.jpg,Other Fire,person,,1.0,0.801,0.682,0.9
-1_100_jpg.rf.109c1c08a967ed78774564e9ae9149e6.jpg,Smoke Only,None,,0.0,0.919,0.0,0.919
+1_100_jpg.rf.109c1c08a967ed78774564e9ae9149e6.jpg,Smoke Only,None,"Watermark: ""WW"" 24%",0.0,0.919,0.0,0.919
 1_11_jpg.rf.e8e981c54f73502e0c73c7492475558b.jpg,Grass Fire,None,,0.998,0.764,0.645,0.881
 1_12_jpg.rf.e6dcb59672a512ba4258e6ff052584bb.jpg,Grass Fire,None,,0.999,1.0,0.581,0.999
 1_14_jpg.rf.bd28f5bba14848750cd22465f1d331e8.jpg,Grass Fire,None,,0.998,0.84,0.96,0.919
@@ -308,7 +308,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 1_21_jpg.rf.d6064d5fdb2e8eaaf9c84ff604781510.jpg,Forest Fire,None,,1.0,1.0,0.826,1.0
 1_22_jpg.rf.2e82a522c640d4d6d6a2e2f742c78883.jpg,Structure Fire,person,,1.0,1.0,0.877,1.0
 1_25_jpg.rf.2842aca7d1d8b211f12c5478fcae64bd.jpg,Vehicle Fire,car,,1.0,1.0,0.898,1.0
-1_26_jpg.rf.8294bc581c2fd130ee454f6750c85ef3.jpg,Other Fire,None,,1.0,1.0,0.547,1.0
+1_26_jpg.rf.8294bc581c2fd130ee454f6750c85ef3.jpg,Other Fire,None,"Watermark: ""Y5"" 15%",1.0,1.0,0.547,1.0
 1_2_jpg.rf.c0b301ca9febca7c8eac5d02a7efbd6a.jpg,Grass Fire,None,,0.998,0.9,0.772,0.949
 1_31_jpg.rf.09e6919797529c0067c67abd66a7283e.jpg,Structure Fire,None,,1.0,0.768,0.695,0.884
 1_32_jpg.rf.3e4d9e62527f19b8ede5f4dea07d633e.jpg,Structure Fire,None,,1.0,0.974,0.987,0.987
@@ -320,7 +320,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 1_3_jpg.rf.617ef1a5d3a4a3e32f433cd33b55b1fb.jpg,Grass Fire,None,,0.999,1.0,0.577,0.999
 1_40_jpg.rf.5d1a8f0e619ed26f6a2d2007a7195cec.jpg,Structure Fire,None,,1.0,1.0,0.322,1.0
 1_41_jpg.rf.504af2580bab99879b2a83fb1cd6bbe9.jpg,Structure Fire,None,,1.0,0.966,0.854,0.983
-1_42_jpg.rf.02681a2abb1f8dcb3bd4412c726857d5.jpg,Other Fire,None,,1.0,0.695,0.78,0.848
+1_42_jpg.rf.02681a2abb1f8dcb3bd4412c726857d5.jpg,Other Fire,None,"Watermark: ""ay"" 22%",1.0,0.695,0.78,0.848
 1_45_jpg.rf.d8707caaadc86a1705f24570829afb07.jpg,Forest Fire,None,,1.0,1.0,0.928,1.0
 1_46_jpg.rf.d2dbfcdc8f647b9b9cb3ad515c98be65.jpg,Container / Trash Fire,None,,1.0,0.85,0.742,1.0
 1_48_jpg.rf.553c78c472687d5b7bd33abc528d82b2.jpg,Smoke Only,None,,0.309,0.985,0.0,0.985
@@ -371,15 +371,15 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 1b798c3b-ad81-4c34-ae18-31240a6e894e_jpg.rf.6b9a9396849c576f2c1c58c00acf3e16.jpg,Vehicle Fire,car,,1.0,0.992,0.484,0.996
 1babad6a-7892-43d5-a283-37deab72aab4_jpg.rf.509da1110a9d89d31e189bb7a7f6f4d9.jpg,Smoke Only,"car, person",,0.173,0.913,0.0,0.913
 1bffc404-8351-4615-9f20-6c80dc410d52_jpg.rf.bfd87974b21c382f038e7ea0d315e1b2.jpg,Container / Trash Fire,person,,1.0,0.66,0.972,0.83
-1c8349d1-9476-4591-87f8-52209721afc3_jpg.rf.f86c1db670807ee5624d38a19df97c19.jpg,No Fire / Unknown Scene,person,,0.0,0.914,0.0,0.0
+1c8349d1-9476-4591-87f8-52209721afc3_jpg.rf.f86c1db670807ee5624d38a19df97c19.jpg,No Fire / Unknown Scene,person,"Watermark: ""LEI"" 20%",0.0,0.914,0.0,0.0
 1c8480e0-7f02-412e-bdf4-bea8ca79d7ff_jpg.rf.74f75cfe404eb8e29d456bd0756de86d.jpg,Vehicle Fire,"car, person, truck",,1.0,0.881,0.779,1.0
-1c992e2b-108a-4e3c-859d-ae84d6f8ce7f_jpg.rf.58ff9e7fd844e0ede01140a34f7c40c4.jpg,Vehicle Fire,"bus, car, truck",,1.0,0.767,0.992,0.883
+1c992e2b-108a-4e3c-859d-ae84d6f8ce7f_jpg.rf.58ff9e7fd844e0ede01140a34f7c40c4.jpg,Vehicle Fire,"bus, car, truck","Street Sign: ""RS oy ed 4 Ly"" 61%",1.0,0.767,0.992,0.883
 1caa69fb-f2f3-4cae-a5ec-cf51c73dc970_jpg.rf.8815f8fdcd079d97a51272028f1d18e8.jpg,Forest Fire,person,,0.998,0.5,0.761,0.998
 1cdb178d-e867-404e-a2a3-fc5b7e0c814f_jpg.rf.3361523db4654229ca2dc74c6e044eec.jpg,Forest Fire,None,,1.0,0.759,0.928,0.879
 1cdeaf6c-0167-47d9-9190-ca728b543f40_jpg.rf.1fdd607bb81f26f01848967349d7a282.jpg,Grass Fire,person,,1.0,0.913,0.898,1.0
 1ce47c78-7c29-4f2b-b614-657907880f8b_jpg.rf.26de4a479ae8371d11c899b42b26590a.jpg,Vehicle Fire,"car, person",,1.0,0.924,0.698,1.0
 1d4677c1-ed2f-4321-a555-f5610040931c_jpg.rf.3766eb89fc72f578b1c855de956837aa.jpg,Other Fire,None,,1.0,0.597,0.631,0.799
-1d797f4e7f3a3ba45ac26472b19afa0e_jpg.rf.c300dd6037d73231e4599e8d56d56ee2.jpg,Other Fire,None,,1.0,1.0,0.56,1.0
+1d797f4e7f3a3ba45ac26472b19afa0e_jpg.rf.c300dd6037d73231e4599e8d56d56ee2.jpg,Other Fire,None,"Watermark: ""Y85"" 15%",1.0,1.0,0.56,1.0
 1d7c97f2-39f6-43fa-bf94-ddb61e829b53_jpg.rf.dd11f5f5d74d1bcafbbfdd83253dcae7.jpg,Other Fire,None,,1.0,0.717,0.373,1.0
 1e162678-80b4-48c4-848e-1a175f3230e7_jpg.rf.e5cb4277409ab11c85bff23b19d512f0.jpg,Forest Fire,None,,0.998,0.839,0.449,0.918
 1e61b317-a17b-4d6b-8e68-239b97bbbbd0_jpg.rf.a482f206e0c66d518da305181c5789c3.jpg,Forest Fire,person,,1.0,0.875,0.631,0.937
@@ -414,7 +414,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 2085c0bb-7883-4255-a890-d5b8ff23f223_jpg.rf.fb7d7c06b2556155e0d3c8c691dd1f08.jpg,Grass Fire,person,,1.0,0.976,0.459,1.0
 20b74ff0-2ef2-4125-aa63-2adbe0aaffe9_jpg.rf.d8338828b188bc6f1b0162b100f4a244.jpg,Grass Fire,person,,1.0,0.939,0.705,1.0
 211651e5-4d0f-4927-9f19-4d05205e9802_jpg.rf.c518c1e67b7f4fb613ee3dbfbb4e9e14.jpg,Structure Fire,None,,1.0,0.623,0.772,1.0
-21588630-a5d7-427a-9e41-f85c7c9d58c7_jpg.rf.3a6e494b70ff4707c9624724d0d9e8b5.jpg,Structure Fire,"bicycle, bus, car, person, truck",,1.0,0.821,0.512,0.911
+21588630-a5d7-427a-9e41-f85c7c9d58c7_jpg.rf.3a6e494b70ff4707c9624724d0d9e8b5.jpg,Structure Fire,"bicycle, bus, car, person, truck","Watermark: ""P Re A"" 19%",1.0,0.821,0.512,0.911
 21cf44cd-c2d5-4209-b35d-b92ac07b8f27_jpg.rf.33f93d9097e1ae04ca5f4b503375df45.jpg,Vehicle Fire,person,,1.0,0.885,0.977,1.0
 21f6bea6-741d-4068-bf34-4eacc1707209_jpg.rf.843f6b551cdffecf7dd0840d90a1814c.jpg,Forest Fire,None,,1.0,0.982,0.846,0.991
 22726b53-d161-4923-b2b9-5ec3325f492c_jpg.rf.49ca4930a2f7c7a64fa0ece439258d73.jpg,Structure Fire,None,,1.0,0.959,0.709,1.0
@@ -454,7 +454,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 2d73e279-e1ff-4d87-844d-24e52bedb957_jpg.rf.c75f40ec70c8fd71421f2eae5bac7a4b.jpg,Structure Fire,None,,1.0,0.97,0.856,1.0
 2daa206d-f8cf-4029-89b3-a3f8100a93dd_jpg.rf.92bb2fcf0271d2ab6d3c581976770fdc.jpg,HazMat Fire,person,,1.0,0.924,0.663,1.0
 2f78ae6b-ca06-475b-80e2-d522e535f62a_jpg.rf.88f45b77f69d30a7c2a43605291fdb69.jpg,Grass Fire,person,,1.0,1.0,0.453,1.0
-2fcf751f-7ca9-4d32-b3d1-cb55743c0ffc_jpg.rf.06bd1cfd59ea815f368e853b1e009fb2.jpg,Vehicle Fire,truck,,1.0,0.978,0.518,1.0
+2fcf751f-7ca9-4d32-b3d1-cb55743c0ffc_jpg.rf.06bd1cfd59ea815f368e853b1e009fb2.jpg,Vehicle Fire,truck,"Street Sign: ""ae oe Ory"" 58%",1.0,0.978,0.518,1.0
 2fe8d7da-86fc-47fc-a685-8b1ad1dd75c6_jpg.rf.c5fed870b550729962c689ee1b67628d.jpg,Vehicle Fire,car,,1.0,1.0,0.991,1.0
 306b3165-0ed4-4270-ba5f-8535c1b02c96_jpg.rf.330679bf68e5b94a6f32693f36fc60a6.jpg,Forest Fire,None,,1.0,1.0,0.876,1.0
 30c5d8e8-2093-4e36-993b-fcae3bef7b2b_jpg.rf.5890d687ccea2a989abffe0e5a5e6cb4.jpg,Forest Fire,None,,1.0,0.861,0.897,1.0
@@ -494,9 +494,9 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 3c1fde68-8648-4eba-a910-6d6dd9f76196_jpg.rf.ac27a81973f181463d3c5f9cb7671745.jpg,Vehicle / Accident Scene,"bus, car, person, truck",,0.0,0.918,0.0,0.0
 3c298011-42bc-4e57-88fe-c6d65294f7e5_jpg.rf.a75bd83b14870ca22487904debfda976.jpg,Vehicle Fire,"bus, car, person, truck",,1.0,1.0,0.7,1.0
 3c2a384f-ce1c-4077-9d68-8c48f565f0c4_jpg.rf.813235e7099bb68e6fcd23f819f2d3e0.jpg,Other Fire,person,,1.0,0.829,0.562,0.915
-3c32bfb9-4627-44c3-99a1-117f7d2a31b3_jpg.rf.e767f9bd55672cb316de19ab23094e61.jpg,Structure Fire,None,,1.0,1.0,0.978,1.0
+3c32bfb9-4627-44c3-99a1-117f7d2a31b3_jpg.rf.e767f9bd55672cb316de19ab23094e61.jpg,Structure Fire,None,"Watermark: ""1"" 21%",1.0,1.0,0.978,1.0
 3cd3139c-8cdc-439b-b64a-5f38ced02054_jpg.rf.f61d51bd7bd0dc0db51868dcf6dbb023.jpg,Forest Fire,None,,1.0,1.0,0.399,1.0
-3d5e9036-e4ab-43eb-8f3b-4a8fad706c35_jpg.rf.2f6a6b951b7e2d25161afc0f8326a89d.jpg,Vehicle / Accident Scene,"bicycle, person",,0.001,0.942,0.0,0.001
+3d5e9036-e4ab-43eb-8f3b-4a8fad706c35_jpg.rf.2f6a6b951b7e2d25161afc0f8326a89d.jpg,Vehicle / Accident Scene,"bicycle, person","Watermark: ""rH"" 21% | Watermark: ""j"" 15%",0.001,0.942,0.0,0.001
 3e68170c-b7e7-4bc7-8663-fdb2dea3b336_jpg.rf.d3843aaed3ed417045cd402c6de8ff8c.jpg,Vehicle Fire,None,,1.0,1.0,0.903,1.0
 3ebe1a50-c697-4400-beef-9139eee91a44_jpg.rf.415c26a9d1544de29138ab638212cb4f.jpg,Structure Fire,None,,1.0,0.946,0.31,1.0
 3edad3c2-43ee-4484-8b5b-a149258372c3_jpg.rf.c310c0878bf132717c3719d48d9dc950.jpg,Other Fire,person,,1.0,0.966,0.66,0.983
@@ -533,7 +533,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 47cd9966-a94a-4dbf-b448-9642d70cb3ef_jpg.rf.5907fc93c0df6fe773f021339ace2d06.jpg,Forest Fire,None,,1.0,0.948,0.655,1.0
 47f0e520-25f1-40d6-a980-dcc26bb0474e_jpg.rf.d1ecd71a1dea3617177e77fb9b2f9912.jpg,Vehicle Fire,"bus, car, person, truck",,1.0,0.808,0.604,0.904
 488eab5a-32a7-4830-bd89-8b3ec5a3c7b6_jpg.rf.1e619932437d533c505b2d5e5eaea82c.jpg,Other Fire,person,,1.0,0.733,0.407,0.867
-48a64a94-c37e-4b60-8a27-c6088d27dfb8_jpg.rf.03752e8000e25cd986a34060b410daf5.jpg,Vehicle Fire,car,,1.0,0.881,0.973,0.941
+48a64a94-c37e-4b60-8a27-c6088d27dfb8_jpg.rf.03752e8000e25cd986a34060b410daf5.jpg,Vehicle Fire,car,"Watermark: ""x"" 25%",1.0,0.881,0.973,0.941
 491d7ba5-f7ec-482b-8a86-0ade6d6df784_jpg.rf.02cd60063c9ee2f16de5c37b7abd43b6.jpg,Forest Fire,None,,1.0,0.91,0.969,0.955
 494aff41-bcfb-4b65-84b0-312a60d10658_jpg.rf.03dc1bce2ba464ae37bd3ddf609e99b9.jpg,Forest Fire,None,,1.0,0.872,0.843,1.0
 4a039686-cf9b-4865-a259-de1500695f43_jpg.rf.5c653c0908dfd8d113a13448b69269c3.jpg,Forest Fire,None,,1.0,1.0,0.887,1.0
@@ -602,7 +602,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 5dc2ffbb-77aa-422f-9927-f282e7504fd6_jpg.rf.04c94e441540d5f402722af88d09f306.jpg,Other Fire,None,,1.0,1.0,0.524,1.0
 5e6dc211-ddf4-4ef9-bef1-ce0ed1c57ce4_jpg.rf.6da51650ac12da4c29b471cd6c4d3ee3.jpg,Grass Fire,person,,1.0,0.974,0.507,1.0
 5e848950-c0bc-4f1f-a62c-2a7f89d8d598_jpg.rf.e675dfeb740a99ffae0845b9ce03f1f5.jpg,Grass Fire,person,,1.0,0.916,0.598,1.0
-5e91ea68-fde6-418b-99fe-b02eaee730f5_jpg.rf.ee99834b005f38262c62a5e4e933fc86.jpg,Structure Fire,None,,1.0,0.954,0.861,1.0
+5e91ea68-fde6-418b-99fe-b02eaee730f5_jpg.rf.ee99834b005f38262c62a5e4e933fc86.jpg,Structure Fire,None,"License plate: ""WEE"" 65%",1.0,0.954,0.861,1.0
 5ea29a40-375a-4135-a51e-9c3650383d50_jpg.rf.7659483bcafa625d2da01b417f9cd8d7.jpg,Vehicle Fire,None,,1.0,0.98,0.967,0.99
 5eb70a6f-537e-4878-a3ad-03493645f06a_jpg.rf.dd08f3e4ae7f032064adf20890b095dc.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.983,1.0
 5ed6233d-fbbb-4bd9-93f2-73cfb54f67be_jpg.rf.4b31b83861d3a65e7db91cfc3f6ded58.jpg,Forest Fire,None,,1.0,1.0,0.817,1.0
@@ -622,7 +622,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 62556a5a-47ae-4d67-aaf3-7f05521e4c11_jpg.rf.ef5dc092e2d0dbc020c6dab1c2156156.jpg,Forest Fire,None,,1.0,1.0,0.472,1.0
 62696f90-a4db-4630-bea0-6889e4e5936e_jpg.rf.8c7c87733780248e4a83cd6e687e0b04.jpg,Forest Fire,person,,1.0,0.92,0.78,1.0
 62731458-af48-47b1-90d5-4baf61cab22a_jpg.rf.ea80eb00e0d0021387dd86552eda4335.jpg,Vehicle Fire,"bus, car, person, truck",,0.998,0.962,0.989,0.98
-6369fda9-4f28-45de-adac-17f83fe74277_jpg.rf.ab1b9b4a1165f69445bea0e2ef75b3ae.jpg,Vehicle Fire,"bus, car, person",,1.0,1.0,0.673,1.0
+6369fda9-4f28-45de-adac-17f83fe74277_jpg.rf.ab1b9b4a1165f69445bea0e2ef75b3ae.jpg,Vehicle Fire,"bus, car, person","Watermark: ""BESS"" 21%",1.0,1.0,0.673,1.0
 63848775-72e6-47cb-a0cc-4d6105885a3a_jpg.rf.2b43f50e0f5c3916546971a0b1657ab0.jpg,Forest Fire,person,,1.0,0.876,0.704,0.938
 63c41ed7-46c4-42ff-9faa-d1eb519bac14_jpg.rf.a1938b888eaaca3046dfd1dae325d449.jpg,Forest Fire,None,,1.0,0.926,0.594,0.963
 63daf86d-25d4-41cc-9c81-5a02d702a0a9_jpg.rf.9caa082c178224ef92b7fff5629b3773.jpg,Structure Fire,None,,1.0,0.89,0.875,1.0
@@ -636,7 +636,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 650c3ca9-9c61-49fc-87fb-e99b41e22258_jpg.rf.d88985f2bdef40852c8fcea420a29249.jpg,Vehicle Fire,"car, person, truck",,1.0,0.943,0.848,1.0
 6514a983-a2d6-4bc4-bf5e-de6b9b9239a6_jpg.rf.3513130074608da3ecd86da728dada48.jpg,Vehicle Fire,person,,1.0,0.888,0.655,0.944
 658c391b-aa84-4ea0-8973-9a4858a1f639_jpg.rf.f71b92afe1249c3bd665ffccbc931315.jpg,Grass Fire,None,,1.0,0.855,0.709,0.927
-66275c82-7780-44fd-bfc7-94442806a84f_jpg.rf.6651dbca86d09d2c33b860334223eeb9.jpg,Structure Fire,None,,1.0,0.904,0.995,1.0
+66275c82-7780-44fd-bfc7-94442806a84f_jpg.rf.6651dbca86d09d2c33b860334223eeb9.jpg,Structure Fire,None,"Watermark: ""BSI"" 19%",1.0,0.904,0.995,1.0
 6648460b-1fbf-41cd-83a9-0475cc7b7861_jpg.rf.94d499f9fa3c8b7b9cfa05671e12fcdc.jpg,Smoke Only,person,,0.0,0.638,0.0,0.638
 6671fc17-0cf9-4bcb-a59a-ca5f063ea948_jpg.rf.39871d8fe7fe3a8739f31a436969a49b.jpg,Grass Fire,None,,1.0,0.977,0.652,0.989
 66c7ff94-42ac-4a10-9c20-6c2141aa2110_jpg.rf.24d2787056b88766cf5847e347fc3df9.jpg,Other Fire,person,,1.0,0.991,0.674,1.0
@@ -662,11 +662,11 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 6bdcdc30-d501-42c7-aa52-d0d3a0c63923_jpg.rf.dcf40dbaf1ee9ad3e573ce19da9bd71f.jpg,Vehicle Fire,car,,1.0,0.962,0.989,0.981
 6bea8d18-952a-490f-8d62-49d4b533a76d_jpg.rf.317c69c2c263a6d4a36ef9b6d88e2b3a.jpg,Forest Fire,person,,1.0,0.823,0.922,0.912
 6c1e4ebe-16e0-4a7a-bb9d-8fcaeb084317_jpg.rf.0a4a47a0e30f05c1ae6b08b395b71463.jpg,Smoke Only,None,,0.023,0.733,0.0,0.733
-6c3b6302-9db5-4ffc-bfc8-236e723c7177_jpg.rf.88e7f25f90082166d163790fe29b8b30.jpg,Structure Fire,None,,1.0,0.877,0.862,1.0
+6c3b6302-9db5-4ffc-bfc8-236e723c7177_jpg.rf.88e7f25f90082166d163790fe29b8b30.jpg,Structure Fire,None,"License plate: ""7A16A"" 65%",1.0,0.877,0.862,1.0
 6c3f64dc-0d7d-4245-b34c-485dbdeef17a_jpg.rf.66672479bdaa23162070423f53823090.jpg,Smoke Only,None,,0.078,0.598,0.0,0.598
 6c773280-0d60-4e46-9ae4-64f5ff742c4d_jpg.rf.ec5091f1f5da0d530121ebeebf34fc1f.jpg,Grass Fire,None,,0.998,0.607,0.927,0.803
 6d2fdc38-8cb6-4d15-a1c4-5554f461ce89_jpg.rf.e0ea0e8ed8eb37405864a206a63cd611.jpg,Vehicle Fire,"bus, car, person, truck",,1.0,1.0,0.952,1.0
-6d30bedf-2b27-4ef9-9c5b-e4f79b99f0ab_jpg.rf.bfc64a1c44726029474db2be89f4d65b.jpg,Vehicle Fire,"bus, car, truck",,1.0,0.694,0.746,0.847
+6d30bedf-2b27-4ef9-9c5b-e4f79b99f0ab_jpg.rf.bfc64a1c44726029474db2be89f4d65b.jpg,Vehicle Fire,"bus, car, truck","Watermark: ""ea in ae acl YY tigi a a y bh a VS A"" 21%",1.0,0.694,0.746,0.847
 6d33542e-9023-408c-8660-9df0a9c833f1_jpg.rf.0a786591ba1b7cb4ae177de8d0127882.jpg,Structure Fire,None,,1.0,0.793,0.963,0.896
 6da6384f-6b1f-49d1-b65c-1489283bdfc9_jpg.rf.9f86516fbfc0376f369a90f13025e991.jpg,Grass Fire,person,,1.0,0.922,0.574,1.0
 6df5a6aa-cdb8-4043-aa4b-d99f7c1a9686_jpg.rf.380603b205f9362b0aa354eba4abe568.jpg,Grass Fire,person,,1.0,0.861,0.95,0.93
@@ -684,7 +684,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 7306c383-82c9-4bed-a543-5c6a67c21ed0_jpg.rf.e8675e7a8fca0ddbe9caba9e92e17636.jpg,Forest Fire,None,,1.0,1.0,0.976,1.0
 7335d330-6ba3-4cc0-bb83-aef7416ff16e_jpg.rf.ea102563cc228b955127ec3839600376.jpg,Smoke Only,"bus, person",,0.457,0.769,0.0,0.769
 733ce287-8e04-4dbf-97cc-4308ce58619f_jpg.rf.7d8b651454af411bed2925c6a991a647.jpg,Forest Fire,None,,1.0,1.0,0.616,1.0
-737f2146-bd9a-4964-897d-875fbc167486_jpg.rf.513502970e4b5a6fc47147d77c097c62.jpg,Vehicle Fire,person,,1.0,1.0,0.955,1.0
+737f2146-bd9a-4964-897d-875fbc167486_jpg.rf.513502970e4b5a6fc47147d77c097c62.jpg,Vehicle Fire,person,"Watermark: ""1 a 4 ll"" 22%",1.0,1.0,0.955,1.0
 73b54226-20a4-46b6-9736-dff411ec7816_jpg.rf.8bf760db0de0e7cbcfb65fb2a2a7dc1b.jpg,Vehicle Fire,None,,1.0,0.854,0.691,1.0
 73bd7d61-a230-4bed-947e-7b5026310de2_jpg.rf.90c8a1635ee218d36ec5adb0160157d2.jpg,Vehicle Fire,"person, truck",,1.0,0.931,0.915,1.0
 74a3c970-58e2-45d8-9235-d5654f9e4c8b_jpg.rf.1b53e1342b94b2e932090d4ebbca9e08.jpg,Forest Fire,person,,1.0,0.969,0.723,0.985
@@ -761,8 +761,8 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 8e15fefc-9351-4128-8082-c88a91e84e1b_jpg.rf.c8839fa81fd5d48215c8a832f14c7904.jpg,Forest Fire,None,,1.0,0.821,0.866,0.91
 8e439c68-3b6b-4ab3-beab-463b777971c9_jpg.rf.e376c993fd6a6739bd085cf9b1710756.jpg,Grass Fire,person,,1.0,0.962,0.669,1.0
 8e86d8a7-036f-4b69-83ba-320e44c184ad_jpg.rf.d4c37fbf0f9e12ed4b5e6da1c455a462.jpg,Vehicle Fire,person,,1.0,0.941,0.964,1.0
-8f226eae-76b0-486f-a0f9-5e814aeb627e_jpg.rf.cce5e458c063f67ff927dcf45418728b.jpg,Structure Fire,None,,1.0,0.982,0.864,1.0
-8f25df23-d33a-4f73-8806-ddd0c85f1e69_jpg.rf.a5d1dac72cca6123906e4868ddb71655.jpg,Grass Fire,person,,1.0,0.923,0.856,1.0
+8f226eae-76b0-486f-a0f9-5e814aeb627e_jpg.rf.cce5e458c063f67ff927dcf45418728b.jpg,Structure Fire,None,"Watermark: ""PST"" 21%",1.0,0.982,0.864,1.0
+8f25df23-d33a-4f73-8806-ddd0c85f1e69_jpg.rf.a5d1dac72cca6123906e4868ddb71655.jpg,Grass Fire,person,"Watermark: ""Pra AP J a ie Ft"" 20%",1.0,0.923,0.856,1.0
 8f697edb-af69-46a5-94f0-584fbcd6d250_jpg.rf.7fa6de7f9caa8c5f9a77490acdf9b001.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.987,1.0
 8faae2b2-5e14-454b-b84b-e89fda9093f6_jpg.rf.189c52048fe40ec01b57769a196d28a7.jpg,Vehicle Fire,None,,1.0,0.953,0.513,1.0
 8ff712d2-20bb-4282-8ed5-f644dc4a5336_jpg.rf.dc3e8fd451411ece35e5026ea1bfaba7.jpg,Forest Fire,person,,1.0,0.656,0.968,0.828
@@ -774,7 +774,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 935b7200-937c-4454-8ac3-cc7bbdc46c5a_jpg.rf.2e07eabacf465d4e83a17c1064df00e8.jpg,Vehicle Fire,"person, truck",,1.0,0.867,0.968,1.0
 936c8fcb-e5a0-4e51-874f-ce8f06c64bbd_jpg.rf.fc4a136dc9fa0d55101e1ca828c54063.jpg,Vehicle Fire,car,,1.0,1.0,0.982,1.0
 93962417-2f29-46ba-bb52-5ef393f9d5fb_jpg.rf.bd61bc8078bef928813b4771bdd939c8.jpg,Structure Fire,None,,1.0,0.99,0.391,1.0
-942d0a91-3542-4c3d-b900-f1c7fddf130e_jpg.rf.96d5c6e1d912bf40906077ddee5f9042.jpg,Vehicle / Accident Scene,car,,0.001,0.862,0.0,0.001
+942d0a91-3542-4c3d-b900-f1c7fddf130e_jpg.rf.96d5c6e1d912bf40906077ddee5f9042.jpg,Vehicle / Accident Scene,car,"Street Sign: ""HE # fam iJ F"" 82% | Street Sign: ""von 2 ia B SA"" 68%",0.001,0.862,0.0,0.001
 94350774-3d84-484f-8657-393a9ff591d2_jpg.rf.c1385d5e73bb9248c86a7f853e983480.jpg,Vehicle Fire,None,,1.0,0.902,0.983,1.0
 946b134d-9bb1-4d0a-aa51-9290af7cd313_jpg.rf.66cc45bf192e7c615426e33469b308a0.jpg,Forest Fire,person,,1.0,0.637,0.435,0.818
 94b56946-0aa6-41e2-9562-2c7ce8ae75f4_jpg.rf.0249bb4f12c2528927f378dd5f275e37.jpg,Vehicle Fire,person,,1.0,0.864,0.455,1.0
@@ -796,7 +796,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 98aa370a-f551-4235-a903-e00dd29ea8f3_jpg.rf.af14392939435dff80da7d494aa4c7a6.jpg,Vehicle Fire,car,,1.0,0.646,0.833,0.823
 98c4fc36-8c60-4eb7-bbc1-df266ca21d67_jpg.rf.cc80e1a4faf640199548d40ba514e2d5.jpg,Grass Fire,person,,1.0,0.89,0.644,0.945
 995cc86e-591c-459b-87b8-851e5fef135a_jpg.rf.5c32ca415f01b61fd1f2fdeee946f722.jpg,Vehicle Fire,car,,1.0,0.847,0.305,1.0
-996a061a-b139-408c-a8bf-ead2cfc15763_jpg.rf.5bfccfc49e2192959d92b0f4f4b3d4e3.jpg,Grass Fire,None,,1.0,0.933,0.829,0.966
+996a061a-b139-408c-a8bf-ead2cfc15763_jpg.rf.5bfccfc49e2192959d92b0f4f4b3d4e3.jpg,Grass Fire,None,"Watermark: ""SPAY"" 15%",1.0,0.933,0.829,0.966
 9_2_14_Andrea_Mexico_trash_1050_788_s_c1_c_c_jpg.rf.f11d93c00791e40bc39a40d9bcbcc0c0.jpg,Container / Trash Fire,None,,1.0,0.654,0.953,0.827
 9a60689a-04e9-44f3-aabf-231ae4fec1a5_jpg.rf.0e92c9ff55c24428c58d22a8fc30562d.jpg,Forest Fire,None,,1.0,1.0,0.696,1.0
 9a8cf844-52c4-48c7-9d43-2b26083ce5f8_jpg.rf.0633e0e6735163bb98ec8d1b82de50d1.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.984,1.0
@@ -808,7 +808,7 @@ images.jpg,Vehicle / Accident Scene,"car, motorcycle, person",,0.001,0.989,0.0,0
 9ca397f2-8ae1-46fe-991d-748a84a18761_jpg.rf.9d7bbcafb620c4d6a4b7a6c228be418f.jpg,Vehicle Fire,car,,1.0,0.904,0.976,0.952
 9d6daf7d-5196-4161-921c-a91305b17c26_jpg.rf.838ad4d5aaa29fdcdb64c6bef9b4d473.jpg,Grass Fire,person,,1.0,0.992,0.533,1.0
 9e3176e1-ad75-4ef2-9d1f-80ef7c49ffa6_jpg.rf.dd21ff9aac3c32a9e73ad2b750c35f46.jpg,Grass Fire,None,,0.997,1.0,0.984,0.999
-9e3960f9-e92a-4405-91c2-c8bf32623b57_jpg.rf.50ab0e328d4615ba61f8dd0dd50c5c76.jpg,Container / Trash Fire,None,,1.0,0.962,0.545,1.0
+9e3960f9-e92a-4405-91c2-c8bf32623b57_jpg.rf.50ab0e328d4615ba61f8dd0dd50c5c76.jpg,Container / Trash Fire,None,"Watermark: ""EH"" 17%",1.0,0.962,0.545,1.0
 9e6157b0-e034-4577-87ec-d19a3a3574a6_jpg.rf.b7f9d7d5bbd5e7a46e86ee73710f664b.jpg,Forest Fire,None,,1.0,0.894,0.582,1.0
 9ed83408-ba50-4ba3-9566-0710675d1233_jpg.rf.370a04eaa0d1ce4a1b91981532994bf4.jpg,Forest Fire,person,,1.0,0.883,0.894,1.0
 9f042399-a690-4fe4-999b-108d36860019_jpg.rf.12779ed96ad39aeb86d6b28d88f5e1c4.jpg,Grass Fire,person,,1.0,0.854,0.702,0.927
@@ -822,7 +822,7 @@ _91753989_capture_jpg.rf.92b2f7c46682bad15694c1ec71a27870.jpg,HazMat Fire,None,,
 a0c5dd64-5811-41a0-9c78-89f1fb8b0c8f_jpg.rf.79326e1f3602c1499b8ee46ddadfa62c.jpg,Grass Fire,None,,1.0,0.936,0.966,0.968
 a19cfadf-1f5a-4e0e-94e7-d0aebad0d881_jpg.rf.b484063b3a68ed9dc9bc6757a706e6d5.jpg,Forest Fire,person,,1.0,0.765,0.844,0.883
 a23e24e2-30e5-4481-a93c-e068ebd8dedb_jpg.rf.04cd30f9db75756e85ee8753224db326.jpg,Vehicle Fire,"car, truck",,1.0,0.98,0.882,0.99
-a283645b-ebf8-41d2-a2fe-2ca60ab3ac54_jpg.rf.c0233f70b2b14631c61e3aa986c7cca0.jpg,Smoke Only,None,,0.015,1.0,0.0,1.0
+a283645b-ebf8-41d2-a2fe-2ca60ab3ac54_jpg.rf.c0233f70b2b14631c61e3aa986c7cca0.jpg,Smoke Only,None,"Watermark: ""SS"" 20%",0.015,1.0,0.0,1.0
 a2d33cb8-dae5-4b37-bddd-bde874580ebc_jpg.rf.6bcc13af50fd32a84120ae21f5d98576.jpg,Grass Fire,person,,1.0,0.949,0.549,1.0
 a2d9c0fa-0b8d-4d91-b8ce-9d127b7e3cd8_jpg.rf.56f8aa3a343f63c2ed0ee7e3abe165fa.jpg,Vehicle Fire,None,,1.0,0.964,0.478,1.0
 a38d750c-9ef9-46a3-8302-7fc3f478955c_jpg.rf.bbf23acb0a8fd718c06d381694772543.jpg,Other Fire,person,,1.0,0.999,0.69,1.0
@@ -910,7 +910,7 @@ bec8cbdb-83eb-40f1-9f3e-5f2b96629102_jpg.rf.03b5678fa2002bb0cdb050d83397f8b1.jpg
 bed96d76-e58b-494f-8209-aaf187a38e4d_jpg.rf.234c2c26da060f56b312bcea407d86e6.jpg,Vehicle Fire,"car, motorcycle",,1.0,1.0,0.992,1.0
 Bedroom-fire-test-2-mins-1024x553_jpg.rf.ad448672c3346da2e01ab6b9b1ecb43f.jpg,Structure Fire,person,,1.0,0.89,0.871,1.0
 bee3a77e-0e77-47e1-9cc0-cb6f811ace11_jpg.rf.1ad5ca484172eaa9816ebc3204514bba.jpg,Forest Fire,None,,1.0,1.0,0.891,1.0
-bef2007f-437a-486e-88ea-28ca8d962f3f_jpg.rf.6297eb7ccf81691293400f2a9f70c374.jpg,Structure Fire,None,,1.0,0.974,0.968,1.0
+bef2007f-437a-486e-88ea-28ca8d962f3f_jpg.rf.6297eb7ccf81691293400f2a9f70c374.jpg,Structure Fire,None,"Street Sign: ""URE SM Gas Saas PURI Ed bt te"" 64%",1.0,0.974,0.968,1.0
 bf5740e3-4675-4aad-bae9-9fff1a71f94d_jpg.rf.fdef7132e0a223e895316ff3be862e61.jpg,Structure Fire,None,,1.0,0.917,0.998,1.0
 bfc2fc11-03e1-448b-9aa3-e6d19824d986_jpg.rf.6905d0ae93b4c4cf9b1e0a5cc2644d3a.jpg,Vehicle Fire,"car, person, truck",,1.0,1.0,0.831,1.0
 bfc69719-888e-451f-994c-a3c3c7e83839_jpg.rf.f1de17c83e5b4918601eecc1afba41a2.jpg,Structure Fire,person,,0.998,0.989,0.966,0.994
@@ -999,7 +999,7 @@ d0af5de0-1166-4f2b-9baa-f7f68d944051_jpg.rf.8e9e2ff4f7b11f259674112ee8c19628.jpg
 d15c02b4-ff5b-4cbd-b9fc-376362c6be1d_jpg.rf.24f84a05258cae44ca3e0baf970ec319.jpg,Forest Fire,person,,1.0,0.658,0.671,0.829
 d1cf11a7-6f15-4144-a2aa-6ad5166b311a_jpg.rf.27f30bf81cc944b985a60ccaf1e796c4.jpg,Grass Fire,None,,1.0,0.923,0.838,0.961
 d202fd4a-5926-4e9a-83fb-3892b826a2b4_jpg.rf.8c8f806aed4c97bc48649e2b9a721c88.jpg,Forest Fire,None,,1.0,0.901,0.777,0.951
-d20971dd-acf9-4ea6-bcfb-936c293dfde8_jpg.rf.630ff27c95a6f5851976ee5db880d2b5.jpg,Grass Fire,person,,1.0,0.887,0.906,1.0
+d20971dd-acf9-4ea6-bcfb-936c293dfde8_jpg.rf.630ff27c95a6f5851976ee5db880d2b5.jpg,Grass Fire,person,"Watermark: ""EEREI"" 15%",1.0,0.887,0.906,1.0
 d2183264-3eca-4c1b-a540-ba618a68e0c3_jpg.rf.aef260934ee2ea59022389ba93d7c32f.jpg,Vehicle / Accident Scene,"bus, car, person, truck",,0.003,0.87,0.0,0.003
 d2bca94b-471b-43b9-a408-1697aebe94a1_jpg.rf.371b15a2680346efdf329fc8a3013db4.jpg,Structure Fire,None,,1.0,1.0,0.836,1.0
 d2f0e634-1d0d-444c-8184-b4ba0df24a2a_jpg.rf.b9766fc894474294f6a0c4e213bd6fe1.jpg,Structure Fire,None,,1.0,0.957,0.997,0.979
@@ -1064,7 +1064,7 @@ e3a004dc-d0a5-44b8-af3b-beec207d7c3b_jpg.rf.ac3adfb1c2b7a3a706631e40febb44ad.jpg
 e3b3b432-9242-4231-b75c-09e1aed3f2be_jpg.rf.dcc421ec66b68c180a8d7f09bd3429eb.jpg,Structure Fire,None,,1.0,0.928,0.993,0.964
 e3ddfdd2-d7cc-4aa8-a542-a2bcf27ed6c8_jpg.rf.4eff29df400c491640ed5eab0067ed5f.jpg,Grass Fire,None,,1.0,0.854,0.511,1.0
 e405e95b-6900-43ae-9bde-42e827557aec_jpg.rf.1524687483d382519b93a91dcf92c102.jpg,Vehicle Fire,None,,1.0,0.878,0.929,1.0
-e5656558-d2b7-452a-a393-aad33ce9d6d2_jpg.rf.757540961c1258bbd3e4d50c0b55aef6.jpg,Structure Fire,None,,1.0,0.974,0.999,1.0
+e5656558-d2b7-452a-a393-aad33ce9d6d2_jpg.rf.757540961c1258bbd3e4d50c0b55aef6.jpg,Structure Fire,None,"Watermark: ""1C"" 15%",1.0,0.974,0.999,1.0
 e57d0a5f-dfde-437c-afd1-49497eebc263_jpg.rf.e001a05ca251ad3f4521c3192fabf7f5.jpg,Smoke Only,car,,0.0,1.0,0.0,1.0
 e5c81c02-01ce-4a74-9c09-9784024334b2_jpg.rf.8803e1d3090dab3e2bd2c24264fea3d8.jpg,Vehicle Fire,None,,1.0,1.0,0.998,1.0
 e5e9c618-e5e9-4bb3-8c28-66948b07e200_jpg.rf.6c87cbb1a983f4dcf1b7b5a3fe8dff16.jpg,HazMat Fire,None,,1.0,1.0,0.924,1.0
@@ -1128,7 +1128,7 @@ faaaa4b6-5bd7-4586-875a-2150605750f4_jpg.rf.028e279956a0b0503c5908926c3975c5.jpg
 fab2a362-6a8e-4862-816b-77baa60ab036_jpg.rf.3fa9c4648163c4e813aa7557b6b93ff2.jpg,Vehicle Fire,None,,1.0,1.0,0.603,1.0
 faed9115-4c3d-4aea-b977-fe3e4db41203_jpg.rf.ed03e1765528f0b464d2e24f5c292936.jpg,HazMat Fire,None,,1.0,1.0,0.925,1.0
 fb498f54-105c-4074-9a3f-a875ec38fedd_jpg.rf.371af9a61475251adac57b8c338e4c03.jpg,Vehicle Fire,None,,1.0,0.972,0.768,1.0
-fb712c7d-9988-4acb-807f-c8493e296fc4_jpg.rf.fdb5806c427be161dd37d5dae7440852.jpg,Structure Fire,None,,1.0,0.866,0.972,1.0
+fb712c7d-9988-4acb-807f-c8493e296fc4_jpg.rf.fdb5806c427be161dd37d5dae7440852.jpg,Structure Fire,None,"Watermark: ""CT"" 15%",1.0,0.866,0.972,1.0
 fc2d23dc-aaf3-4ca8-b933-798c1ca7fda3_jpg.rf.487deabc76154c17d12af5d33a97b840.jpg,Forest Fire,None,,1.0,0.904,0.942,0.952
 fca708b2-98bc-41c8-88e7-bdc365d73704_jpg.rf.1887ffa0d80f782f922a9b9f02b1dbbf.jpg,Structure Fire,person,,1.0,0.863,0.913,0.932
 fca71cf7-71b3-4406-8272-d06fc3371a7f_jpg.rf.ea2be6cfc35e3eeda9f71aa03f81e0a1.jpg,Grass Fire,None,,1.0,1.0,0.859,1.0
@@ -1198,7 +1198,7 @@ fire079_jpg.rf.8a890b3568eac9dba2601ccb6f330fb7.jpg,Vehicle Fire,truck,,1.0,0.81
 fire080_jpg.rf.9e08f627a54021d779f02d1a3f6291f3.jpg,Vehicle Fire,car,,1.0,1.0,0.794,1.0
 fire081_jpg.rf.30aa06b3bba4b6e35deffbc7bb102dc9.jpg,Other Fire,person,,1.0,0.805,0.423,0.903
 fire083_jpg.rf.757e05d5141349e87c1b64542ad66f5b.jpg,Other Fire,"car, person",,1.0,1.0,0.529,1.0
-fire084_jpg.rf.3b4db8b71cf29fe979af771cda3c5934.jpg,Vehicle Fire,None,,1.0,0.954,0.505,0.977
+fire084_jpg.rf.3b4db8b71cf29fe979af771cda3c5934.jpg,Vehicle Fire,None,"Watermark: ""aera edited"" 17%",1.0,0.954,0.505,0.977
 fire085_jpg.rf.d6bb6a79e4cce87a7b06692b174d1dbb.jpg,Structure Fire,None,,1.0,0.899,0.998,0.949
 fire087_jpg.rf.cb1ca74727aa472df52c5cb7bcb3fb64.jpg,Grass Fire,person,,1.0,0.892,0.861,0.946
 fire090_jpg.rf.09bad52f8046f34241d3008eac61f95a.jpg,Structure Fire,None,,1.0,0.984,0.543,1.0
@@ -1224,7 +1224,7 @@ FlamesEverett_jpg.rf.b6f6ae6a411f826c84802ea0988937cc.jpg,Structure Fire,None,,1
 House-Fire-3-Odegard_jpg.rf.0d19a073f6a8919bb617b780dbd965c5.jpg,Structure Fire,None,,1.0,0.901,0.976,0.95
 house-fire1_jpg.rf.156d82aeb40268c326e7cb71c721d61d.jpg,Structure Fire,None,,1.0,1.0,0.664,1.0
 house_fire_jpg.rf.f8b57843ef56ffed0518a986a0e77e7a.jpg,Structure Fire,None,,1.0,0.763,0.489,1.0
-hqdefault_jpg.rf.498d7b62e51830f28695fc71622886a7.jpg,Structure Fire,None,,1.0,0.56,0.366,1.0
+hqdefault_jpg.rf.498d7b62e51830f28695fc71622886a7.jpg,Structure Fire,None,"License plate: ""0031"" 71%",1.0,0.56,0.366,1.0
 hqdefaultsdfsdf_jpg.rf.e499a444a227b6e73645e7c3cd7a2233.jpg,Structure Fire,None,,1.0,0.908,0.704,0.954
 image1609390x_jpg.rf.d25a39ef418b6fee6d564ca51ec84739.jpg,Structure Fire,None,,1.0,0.573,0.669,1.0
 images_jpg.rf.35dd59ae7e2f15dea7c01c5f0b6aaea1.jpg,Other Fire,None,,1.0,0.82,0.768,0.91
@@ -1259,7 +1259,7 @@ img--132-_jpg.rf.3ca6a1fc7dd0ce8a8bac2b2d4470ce46.jpg,Vehicle Fire,None,,1.0,0.6
 img--135-_jpg.rf.f36f967b64ff606345b78c7a567e6633.jpg,Other Fire,None,,1.0,1.0,0.494,1.0
 img--136-_jpg.rf.ab4f0d49057cb038078711622fef9cea.jpg,Vehicle Fire,"bus, person, truck",,1.0,1.0,0.993,1.0
 img--139-_jpg.rf.dea0cd0dad37924c0722c42da54a9988.jpg,Smoke Only,"car, person",,0.0,1.0,0.0,1.0
-img--14-_jpg.rf.2d71231ababa78ec94327a3b8c0851cc.jpg,Vehicle Fire,car,,1.0,1.0,0.967,1.0
+img--14-_jpg.rf.2d71231ababa78ec94327a3b8c0851cc.jpg,Vehicle Fire,car,"Street Sign: ""fs BE fe Wels Ma av ey"" 59%",1.0,1.0,0.967,1.0
 img--140-_jpg.rf.90defaa6ace872df3165302d66cf106e.jpg,Vehicle Fire,car,,1.0,1.0,0.949,1.0
 img--141-_jpg.rf.0ec854e069122dd129ceebded316c8f8.jpg,Vehicle Fire,truck,,1.0,1.0,0.982,1.0
 img--142-_jpg.rf.23f620c6ec44f974cf798028d0b91a90.jpg,Vehicle Fire,"car, person, truck",,1.0,0.724,0.874,0.862
@@ -1296,7 +1296,7 @@ img--48-_jpg.rf.15cb0dcb7bc0f4db08d85cd234295c9b.jpg,Vehicle Fire,"bus, person, 
 img--49-_jpg.rf.4d39d14deb868f71062e726e98231dbc.jpg,Vehicle Fire,"car, person, truck",,1.0,1.0,0.993,1.0
 img--5-_jpg.rf.53a3c5b2ab1c7f734ea5a52c32f2ec01.jpg,Smoke Only,person,,0.0,1.0,0.0,1.0
 img--51-_jpg.rf.2a5075452b253c3d7e6c2e1496e3bc34.jpg,Vehicle Fire,"bus, car, person, truck",,1.0,1.0,0.989,1.0
-img--53-_jpg.rf.b955327e48cb4f3c8f46d14965c7f1a5.jpg,Vehicle Fire,"car, person, train, truck",,1.0,1.0,0.951,1.0
+img--53-_jpg.rf.b955327e48cb4f3c8f46d14965c7f1a5.jpg,Vehicle Fire,"car, person, train, truck","Street Sign: ""hy af 7 ce a Penne ey ra ey ei fee a ser yn"" 60%",1.0,1.0,0.951,1.0
 img--54-_jpg.rf.79b9c47554e2cf4784d8a7a4a41da8ed.jpg,Vehicle Fire,None,,1.0,1.0,0.567,1.0
 img--55-_jpg.rf.ea18e280ac8a3796d2ea4c69ffc38626.jpg,Vehicle Fire,truck,,1.0,1.0,0.799,1.0
 img--58-_jpg.rf.ef2571b91b3497242bb3bcdbe2721016.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.985,1.0
@@ -1440,7 +1440,7 @@ pic--35-_jpg.rf.d06fed583f4a9b8615dd7f8695021549.jpg,Smoke Only,person,,0.0,0.75
 pic--36-_jpg.rf.a721975f8f9d5a8321daf8e061424267.jpg,Vehicle Fire,None,,1.0,1.0,0.693,1.0
 pic--37-_jpg.rf.9122c2922c1d13c3007bc13f7940403c.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.88,1.0
 pic--39-_jpg.rf.800483f2e3ebf8cdd6eb51e7e19668dd.jpg,Vehicle Fire,None,,1.0,1.0,0.988,1.0
-pic--4-_jpg.rf.ce475526909ad5522087809e1442bdca.jpg,Vehicle Fire,bicycle,,1.0,1.0,0.537,1.0
+pic--4-_jpg.rf.ce475526909ad5522087809e1442bdca.jpg,Vehicle Fire,bicycle,"Watermark: ""RGR"" 22%",1.0,1.0,0.537,1.0
 pic--40-_jpg.rf.97ce5a30725cffd9600c89c1d4896e86.jpg,Vehicle Fire,"car, truck",,1.0,0.804,0.439,0.902
 pic--42-_jpg.rf.98a81f070478df820c7009146195e817.jpg,No Fire / Unknown Scene,person,,0.0,0.863,0.0,0.0
 pic--43-_jpg.rf.d976c178a0cbe4209f6dc827c7172405.jpg,Vehicle Fire,person,,1.0,1.0,0.963,1.0
@@ -1501,7 +1501,7 @@ small--110-_jpg.rf.4dfc7a3e34a675d0fe2dcbf951d99710.jpg,Smoke Only,person,,0.0,1
 small--111-_jpg.rf.5d57de6b5c58a41feeeae3144526e6cb.jpg,Smoke Only,None,,0.0,1.0,0.0,1.0
 small--112-_jpg.rf.dbdd3a9aeba6d42abf6ff79b2dd3c25f.jpg,No Fire / Unknown Scene,person,,0.0,0.906,0.0,0.0
 small--113-_jpg.rf.8b51a9df8ecf84df011d6904f8b8e93a.jpg,No Fire / Unknown Scene,person,,0.0,0.965,0.0,0.0
-small--114-_jpg.rf.4c5377b4fd9d6d1fceee4f9c2bf0eeab.jpg,No Fire / Unknown Scene,person,,0.0,0.903,0.0,0.0
+small--114-_jpg.rf.4c5377b4fd9d6d1fceee4f9c2bf0eeab.jpg,No Fire / Unknown Scene,person,"Watermark: ""oe iS"" 21%",0.0,0.903,0.0,0.0
 small--115-_jpg.rf.27f5e9d8dcd45c02ea1389145d4e0176.jpg,No Fire / Unknown Scene,person,,0.0,0.892,0.0,0.0
 small--116-_jpg.rf.1752b490b250355ee7178d79017b1ae8.jpg,No Fire / Unknown Scene,None,,0.0,0.93,0.0,0.0
 small--117-_jpg.rf.e88f5635a3913a4bbec44311cfef4931.jpg,Smoke Only,person,,0.0,1.0,0.0,1.0
@@ -1564,7 +1564,7 @@ small--68-_jpg.rf.be9956ba0d0da7023fc4c37518d19994.jpg,Other Fire,person,,1.0,0.
 small--69-_jpg.rf.7f5830499879bc5bcc2cbf71bce92448.jpg,Other Fire,None,,1.0,0.915,0.865,1.0
 small--7-_jpg.rf.1bd17254efb28174147f222746d1799e.jpg,No Fire / Unknown Scene,person,,0.0,0.902,0.0,0.0
 small--70-_jpg.rf.ff24d96d717a4066e130229b3b800769.jpg,No Fire / Unknown Scene,None,,0.0,0.963,0.0,0.0
-small--73-_jpg.rf.3dcc841b6301aacf124f56e2fc148379.jpg,Smoke Only,person,,0.0,1.0,0.0,1.0
+small--73-_jpg.rf.3dcc841b6301aacf124f56e2fc148379.jpg,Smoke Only,person,"Street Sign: ""SSE 7 4 A"" 76%",0.0,1.0,0.0,1.0
 small--74-_jpg.rf.640244ed93899553608ce285fdff6440.jpg,Structure Fire,None,,1.0,0.998,0.556,1.0
 small--75-_jpg.rf.451377923c6fb654c2ced8b18a26b3a0.jpg,Uncertain Fire/Smoke Scene,person,,0.34,0.914,0.0,0.457
 small--76-_jpg.rf.672d0d1a4ba33cc26f9e484424084f60.jpg,Smoke Only,person,,0.0,1.0,0.0,1.0
@@ -1608,9 +1608,9 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 0162882b-e4b2-4547-9302-318a35ec67fc_jpg.rf.151fb31e6485b7c8f2642c7fe6647685.jpg,Structure Fire,None,,1.0,0.897,0.593,1.0
 01fcdece-1657-4a03-a310-422f4b504d77_jpg.rf.14a78d3584f00d6f7e9dff2e0af22e05.jpg,Vehicle Fire,None,,1.0,0.969,0.977,1.0
 025f1b04-5c33-4ffb-bbca-080b6b9159ae_jpg.rf.20cf60651613ff237f9e05215052c81b.jpg,Grass Fire,None,,1.0,1.0,0.972,1.0
-02a344d7-c94d-41a6-8dfb-ae00c9ce5237_jpg.rf.f6cd0ee7fc1e56739056232cbd898be9.jpg,Grass Fire,person,,1.0,0.876,0.893,1.0
+02a344d7-c94d-41a6-8dfb-ae00c9ce5237_jpg.rf.f6cd0ee7fc1e56739056232cbd898be9.jpg,Grass Fire,person,"Watermark: ""E"" 15%",1.0,0.876,0.893,1.0
 033717ff-52ea-422e-a07a-df2f8e10a57f_jpg.rf.e88ee2c429ca60d402ec680ac1a62f1b.jpg,Vehicle Fire,"car, person",,1.0,1.0,0.774,1.0
-041fa5e4-7e37-4814-88bc-f5102a9dde72_jpg.rf.4b5069da7d91a9ff67029400c8f4d1a6.jpg,Structure Fire,None,,0.996,0.936,0.923,0.966
+041fa5e4-7e37-4814-88bc-f5102a9dde72_jpg.rf.4b5069da7d91a9ff67029400c8f4d1a6.jpg,Structure Fire,None,"Watermark: ""ae a ee a he oo 7 a cod a La J ga ee"" 20%",0.996,0.936,0.923,0.966
 077a5476-360d-4405-bb2a-4b86ff69d4f3_jpg.rf.122e03ab8f23bbe92549049811ee3dd8.jpg,Vehicle Fire,"car, person",,1.0,0.966,0.659,1.0
 081c85f1-b0ef-4172-b764-6a136476ae69_jpg.rf.c75b021ab9d44878aee9f9bd92265a95.jpg,Other Fire,None,,1.0,0.986,0.508,1.0
 0853cfd8-9e7a-475e-9d8e-fd0b0a65f275_jpg.rf.d3f0f2bf8a3f296fa356d5bae9d8da37.jpg,Forest Fire,None,,1.0,0.883,0.988,0.942
@@ -1638,7 +1638,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 1_23_jpg.rf.cd9ba301e67bb92ec0c1d0daf62811f6.jpg,Structure Fire,person,,1.0,1.0,0.926,1.0
 1_27_jpg.rf.355551a6cf01ac180418be0082a68256.jpg,Forest Fire,None,,1.0,1.0,0.678,1.0
 1_28_jpg.rf.8ddd0a109481af1ee713da1695d75e07.jpg,Structure Fire,None,,1.0,0.906,0.696,0.953
-1_29_jpg.rf.e38274220c7a04662b4b7c6bf3d4d1ad.jpg,Other Fire,None,,1.0,0.731,0.641,0.865
+1_29_jpg.rf.e38274220c7a04662b4b7c6bf3d4d1ad.jpg,Other Fire,None,"Street Sign: ""Cor"" 62%",1.0,0.731,0.641,0.865
 1_30_jpg.rf.a0ec9ed1fa39afc9da8459193197c6ab.jpg,Structure Fire,person,,1.0,0.94,0.511,0.97
 1_36_jpg.rf.12cc64faf40ec311aa73d1329215dd90.jpg,Container / Trash Fire,None,,1.0,1.0,0.947,1.0
 1_38_jpg.rf.af3f9c8a4d44a0f4aff8570efcc8bc34.jpg,Grass Fire,None,,1.0,1.0,0.457,1.0
@@ -1667,7 +1667,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 20200713173212_jpg.rf.dc4379ef6d82eb5342d74f9d2f02c92f.jpg,Grass Fire,None,,0.998,0.9,0.806,0.949
 20200713173409_jpg.rf.7a9e7753f077d5beb891f0a6289006b4.jpg,Structure Fire,None,,1.0,0.856,0.834,0.928
 20e10344-b45c-41b2-b8f1-c0922e6aa100_jpg.rf.fa785ab4a513f2452e8a85c4a970a344.jpg,Vehicle Fire,None,,1.0,1.0,0.928,1.0
-22eqf_jpg.rf.5e049305eb622a165a56dc8d4c8a8b77.jpg,Other Fire,None,,1.0,0.728,0.637,0.864
+22eqf_jpg.rf.5e049305eb622a165a56dc8d4c8a8b77.jpg,Other Fire,None,"Street Sign: ""Cor"" 62%",1.0,0.728,0.637,0.864
 235e6cfc-3fd9-4a4f-87dd-ab92ace33cb5_jpg.rf.7a22ff781a0f343c450e45bf85cb9fd2.jpg,Vehicle Fire,truck,,0.998,1.0,0.929,0.999
 239e4b4c-0919-430d-bcbf-3753ac3cdb58_jpg.rf.72c68db2dab4a7926b7288c8b7ed2330.jpg,Structure Fire,None,,0.998,1.0,0.763,0.999
 2444b20a-1285-422c-afd7-eb5ff8355d46_jpg.rf.80e96b5d18de8d7a5c19908e7cb6dd33.jpg,Vehicle Fire,None,,1.0,0.962,0.722,0.981
@@ -1731,7 +1731,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 4ff78415-93d0-414b-9bd3-4142696ef986_jpg.rf.0eef9ceb52f96c223774b3e66b610b4f.jpg,Structure Fire,None,,1.0,0.858,0.963,1.0
 5246f3e4-8e9a-49d6-84f3-9e741a9f099d_jpg.rf.895a5c4c802f8e7ae0387c309e6a685c.jpg,Vehicle Fire,person,,1.0,0.961,0.736,1.0
 52e40775-a2f3-4763-9fe6-9dc920e57dba_jpg.rf.3b1181248feb275471f07f6d396d8f19.jpg,Structure Fire,"person, truck",,1.0,0.936,0.995,1.0
-5331369c-a299-4a0c-8552-a266338d074d_jpg.rf.e2ad797c745651a7049c7f8ec3113724.jpg,Structure Fire,None,,1.0,0.793,0.934,0.897
+5331369c-a299-4a0c-8552-a266338d074d_jpg.rf.e2ad797c745651a7049c7f8ec3113724.jpg,Structure Fire,None,"Watermark: ""RSET"" 24%",1.0,0.793,0.934,0.897
 551e1012-3d54-4ec1-a154-729abe55c616_jpg.rf.52c77fa93c23e09f964f51dc16d22bd3.jpg,Vehicle Fire,None,,1.0,0.965,0.699,0.982
 558c4678-0cf8-47ec-8c9a-849dda134911_jpg.rf.61ece964238f1242ea558fc5237162bd.jpg,Other Fire,person,,1.0,0.927,0.534,1.0
 58bd57ad-da92-4676-b8ce-ada0eea0327c_jpg.rf.c607eda5ad2fd1b993794645751dd2f7.jpg,Vehicle Fire,None,,1.0,1.0,0.811,1.0
@@ -1755,7 +1755,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 71404040-521a-4fe7-899f-ccbae597a0a9_jpg.rf.fa2f98c060b496b097746955a7ee4d9f.jpg,Forest Fire,None,,1.0,0.869,0.687,1.0
 7293aa09-d916-4c00-878c-981b30fb5253_jpg.rf.5fb25a896ae170da3db0315b31812f2d.jpg,Forest Fire,None,,1.0,0.855,0.694,0.927
 72decdb5-6615-4221-b314-1fc9cd8959b3_jpg.rf.34e1a1cadcb4904a47a4a82f1c797bd8.jpg,Structure Fire,None,,1.0,0.932,0.986,1.0
-7374d490-fe72-4eee-9781-ce87701a5027_jpg.rf.c8749c6a764c7248080ed60aca4dd07d.jpg,Vehicle Fire,"person, truck",,1.0,1.0,0.431,1.0
+7374d490-fe72-4eee-9781-ce87701a5027_jpg.rf.c8749c6a764c7248080ed60aca4dd07d.jpg,Vehicle Fire,"person, truck","Watermark: ""NF"" 22%",1.0,1.0,0.431,1.0
 75b39118-8179-4394-9373-2ef2cdfae9a6_jpg.rf.f471f8976e756d66d036f55c3e39ed9f.jpg,Grass Fire,None,,1.0,1.0,0.872,1.0
 76327ea7-d859-4a66-8b46-a98bd63e509c_jpg.rf.88b1437a7e3aeb4d3720f59e7929b7da.jpg,Smoke Only,train,,0.057,1.0,0.0,1.0
 79527616-26d5-427e-81d4-806bff2113f1_jpg.rf.03da56381c84775efbc4fe7b48f828f7.jpg,Grass Fire,person,,1.0,0.913,0.728,0.956
@@ -1771,7 +1771,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 8199cca5-6ef9-4eb1-88ac-318665beea7b_jpg.rf.1828c08a2db30fc9ba8b07af0c231537.jpg,Forest Fire,None,,1.0,1.0,0.922,1.0
 8246837d-6f70-4686-b14e-c1cd57169df0_jpg.rf.f5d42293c9d14e878eb168bf3bedcdda.jpg,Structure Fire,None,,1.0,0.935,0.837,1.0
 82c92d06-098b-48d6-8bd8-fa1c1a72ce94_jpg.rf.4cd7732df34a3b2def3468a13e787920.jpg,Grass Fire,person,,1.0,0.914,0.575,0.957
-865be73b-2de8-41c3-bd67-f5ac76f51787_jpg.rf.43be5f7947ebc7a6a337d583f5f5a92a.jpg,Grass Fire,person,,1.0,0.965,0.57,1.0
+865be73b-2de8-41c3-bd67-f5ac76f51787_jpg.rf.43be5f7947ebc7a6a337d583f5f5a92a.jpg,Grass Fire,person,"Watermark: ""CN"" 15%",1.0,0.965,0.57,1.0
 8665bbcd-c457-48b4-90fd-673dfb5f9b91_jpg.rf.01db0fad69ee0a4ef7d79a33dc1b9550.jpg,Grass Fire,None,,1.0,1.0,0.944,1.0
 87950769-0bb4-43e4-a7b7-9e979207bddf_jpg.rf.efbc35c9dade40466ae02970152ffd50.jpg,Forest Fire,person,,1.0,0.889,0.93,0.945
 88073a6d-8aed-4272-988d-128b52052451_jpg.rf.23aa1185211254c7743d55f2774b5aa8.jpg,Grass Fire,person,,1.0,1.0,0.38,1.0
@@ -1797,7 +1797,7 @@ your-room1_jpg.rf.0fc156277e1de8708523305ef5fa8174.jpg,Smoke Only,None,,0.0,1.0,
 a189d670-a87a-4b1c-829f-92f06648e9d2_jpg.rf.c00ca34697c3c23c6bb0f57784cf9145.jpg,Forest Fire,person,,1.0,0.923,0.562,1.0
 a570b387-c19f-4ac5-9ec9-4134bfcb9507_jpg.rf.465019c36de035635cc812afa3b45b66.jpg,Structure Fire,None,,1.0,0.942,0.371,1.0
 a7cafb27-f863-4b5b-8936-c6770d52a99f_jpg.rf.06d33021cf964454532d5dd5b292024c.jpg,Forest Fire,None,,1.0,1.0,0.733,1.0
-a838374e-f7fb-4267-9cfe-44d4597e4d6b_jpg.rf.0b5023ed762a1747808d2ecb37e95b6d.jpg,Structure Fire,car,,1.0,0.911,0.997,0.955
+a838374e-f7fb-4267-9cfe-44d4597e4d6b_jpg.rf.0b5023ed762a1747808d2ecb37e95b6d.jpg,Structure Fire,car,"Watermark: ""4 See i SS Se"" 23%",1.0,0.911,0.997,0.955
 a89248ea-e6fd-421f-b394-0ce88d0e8fc7_jpg.rf.1600d0b369a07367a0735867684a433a.jpg,Vehicle Fire,None,,1.0,0.993,0.967,1.0
 a9683175-39e3-46fd-9410-d7cb7cd9abb3_jpg.rf.21213f9334d58c2f41007917d1336c35.jpg,Grass Fire,person,,1.0,0.918,0.873,1.0
 aa4f449e-9a90-4e7d-b2d4-ab0e30a0b59f_jpg.rf.78ef67801c07baaafb4738982d2d0d1f.jpg,No Fire / Unknown Scene,None,,0.093,0.931,0.0,0.093
@@ -1808,7 +1808,7 @@ b016b0a9-3c66-4326-95e3-4e8a43b7e732_jpg.rf.32f70bf5e664ef9b58563c4de0c49e2b.jpg
 b058314b-c391-4536-bbf2-31709fbf9148_jpg.rf.dbece3130b28a5fc2b705f23855f40e3.jpg,Other Fire,None,,1.0,0.932,0.46,1.0
 b22b057b-0d4c-4936-a049-be962216d590_jpg.rf.050cb4f520b141a96efc767597c13ce6.jpg,Forest Fire,person,,1.0,0.949,0.562,1.0
 b2c20f43-0e33-45a1-b95a-541d5d27e289_jpg.rf.65863e63bc613ad085e0e38af6f152ef.jpg,Forest Fire,person,,1.0,0.924,0.566,1.0
-b43b2b8b-2a0b-4de6-9f38-5afc3e8c839e_jpg.rf.d7c7db0c2428b57a472966b28a8492df.jpg,Vehicle Fire,bus,,1.0,0.888,0.992,1.0
+b43b2b8b-2a0b-4de6-9f38-5afc3e8c839e_jpg.rf.d7c7db0c2428b57a472966b28a8492df.jpg,Vehicle Fire,bus,"Street Sign: ""ST ed"" 69%",1.0,0.888,0.992,1.0
 b69e01ba-0f44-4538-b823-4c6f863437a1_jpg.rf.7bb442406c303a374ee5d424b7638d83.jpg,Grass Fire,None,,1.0,0.714,0.523,0.857
 b73a984f-d502-4902-a6b6-7bbd123e7614_jpg.rf.57f92e9ea9722ae5836662e85effbd0c.jpg,Structure Fire,None,,1.0,0.754,0.949,1.0
 b7e8dfc7-508d-4e3d-a952-f854a04863ed_jpg.rf.86ec3d86b726ea20d06973d87b5f988e.jpg,Grass Fire,None,,1.0,0.907,0.91,1.0
@@ -1828,7 +1828,7 @@ c28460a3-9534-416f-812e-b025c72d2ff8_jpg.rf.f825ba080b65dbdf3a4833b9a1b81941.jpg
 c2eda684-a35a-4edf-a818-12e75f77ae04_jpg.rf.278b311f6363727738d75d43c6322cf7.jpg,Vehicle Fire,"bicycle, person",,1.0,0.732,0.487,0.866
 c3d18601-d767-49e4-9301-6500df0e7ca8_jpg.rf.8a831aaafaca3d0216aa151703b2b4bc.jpg,Structure Fire,person,,1.0,0.927,0.63,1.0
 c7f0cce0-3367-4902-ba07-bfdad919968a_jpg.rf.2daabfbf5d794702c56bea28df174e7a.jpg,Structure Fire,None,,1.0,0.725,0.931,0.863
-c819baff-edb6-4f5c-9912-82cb06704b50_jpg.rf.4fc0f495f012f8072115d3ef4c34a7c0.jpg,Vehicle Fire,truck,,1.0,0.68,0.847,0.84
+c819baff-edb6-4f5c-9912-82cb06704b50_jpg.rf.4fc0f495f012f8072115d3ef4c34a7c0.jpg,Vehicle Fire,truck,"Street Sign: ""St Marks Pl"" 79%",1.0,0.68,0.847,0.84
 c87e32f8-777c-45b7-8d67-3810fb2c0fe3_jpg.rf.c236f4ce420f7a35e3b699cde1852508.jpg,Vehicle Fire,truck,,1.0,1.0,0.486,1.0
 c9d45304-67f6-4030-92dc-21080b566ba5_jpg.rf.06ca55771a452697080dc64c70008bdb.jpg,Vehicle Fire,car,,1.0,1.0,0.416,1.0
 cb353acf-b307-4273-9991-5a0df5af1250_jpg.rf.a74bfdf66580dd4ad239bb8ca58f5c67.jpg,Vehicle Fire,None,,1.0,1.0,0.904,1.0
@@ -1865,7 +1865,7 @@ eff6024d-726d-44cc-b943-a73174e23966_jpg.rf.a679a2f9c151e2a79ea09d1269d7199a.jpg
 f08857ae-03e9-4527-afb5-ab7c0757049b_jpg.rf.9b8099a9b4d23ef341d12d0eef209ba0.jpg,Vehicle Fire,"bus, car, truck",,1.0,0.947,0.881,1.0
 f1468c47-db7c-4823-a02a-947ff1272629_jpg.rf.654294c4c8a2c77b0af898fb33a84f41.jpg,Smoke Only,car,,0.001,0.723,0.0,0.723
 f16d0fb3-1999-4f94-ba73-b53a1123d494_jpg.rf.90e33295c640e1814cba8e92dcc85594.jpg,Vehicle Fire,None,,1.0,0.915,0.96,0.958
-f219e8c7-19d1-4b34-81ba-fbada00bd195_jpg.rf.02addd94f325359cb2ab076fd091e347.jpg,Vehicle Fire,"car, truck",,1.0,1.0,0.958,1.0
+f219e8c7-19d1-4b34-81ba-fbada00bd195_jpg.rf.02addd94f325359cb2ab076fd091e347.jpg,Vehicle Fire,"car, truck","Street Sign: ""ant Bee oe Deer Part Breat wood vg me"" 81%",1.0,1.0,0.958,1.0
 f310ce78-37b6-4fea-8c28-209f430ce886_jpg.rf.06209ad9d0ad1e9617a5d26f452116c4.jpg,Forest Fire,None,,1.0,0.929,0.897,0.965
 f313f28a-ebd0-48ec-9c80-d34aab88e351_jpg.rf.a2cf91a3feb034c3facceb5363b4b12c.jpg,Container / Trash Fire,None,,1.0,0.907,0.672,0.953
 f3a93a70-6ecd-47f5-bc43-5887d394c5ec_jpg.rf.f28897cf7a1169163fd6335ca77bedc7.jpg,Structure Fire,None,,1.0,0.979,0.997,1.0
@@ -1881,7 +1881,7 @@ fire009_jpg.rf.a87eab4f32cc7c601a8d94bd9901cfde.jpg,Structure Fire,None,,1.0,0.7
 fire014_jpg.rf.a3ba91aeed22565e368020d51805b708.jpg,Vehicle Fire,"car, person",,1.0,0.867,0.694,1.0
 fire015_jpg.rf.3b2115ed69c8bec8c6af37e7024bc37d.jpg,Vehicle Fire,None,,1.0,0.914,0.893,0.957
 fire018_jpg.rf.4492f8fe167404e20b5963b95c842a51.jpg,Vehicle Fire,person,,1.0,0.823,0.477,0.912
-fire019_jpg.rf.e1cc1a700bfc76a02b4bcd46fc0cef8a.jpg,Container / Trash Fire,person,,1.0,0.865,0.801,1.0
+fire019_jpg.rf.e1cc1a700bfc76a02b4bcd46fc0cef8a.jpg,Container / Trash Fire,person,"Watermark: ""oN"" 23% | Watermark: ""Pom sh"" 21% | Watermark: ""Dy"" 20%",1.0,0.865,0.801,1.0
 fire022_jpg.rf.d72a6d80e178513d6b8fcab042456213.jpg,Grass Fire,person,,1.0,1.0,0.377,1.0
 fire027_jpg.rf.cb7ca1b3973ffcb975a6b8bec7cff6c4.jpg,Container / Trash Fire,None,,1.0,0.715,0.619,0.857
 fire028_jpg.rf.47681614885615c44d73c9063f2725ee.jpg,Container / Trash Fire,person,,1.0,0.652,0.995,0.826

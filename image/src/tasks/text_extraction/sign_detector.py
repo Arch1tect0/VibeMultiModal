@@ -5,12 +5,14 @@ regions and returns crop boxes. OCR should run only on these crops so
 watermarks and image-wide overlays are ignored by default.
 
 This version adds a traffic/street-sign color candidate path for blue, green,
-and red signs. The prior contour-only path was too strict for street signs,
-especially angled blue/green street signs and octagonal STOP signs.
+and red signs. It can also use an optional learned detector (Ultralytics YOLO or
+YOLO-World) before falling back to OpenCV heuristics.
 """
 
 from __future__ import annotations
 
+from functools import lru_cache
+from pathlib import Path
 from typing import Dict, List, Tuple
 
 import cv2
@@ -123,6 +125,120 @@ def _box_score(image, box: Box, contour_area: float) -> float:
     score -= huge_penalty
     return max(0.0, min(1.0, score))
 
+
+
+@lru_cache(maxsize=1)
+def _load_yolo_model():
+    """Load an optional learned sign detector.
+
+    Works with either a custom traffic-sign YOLO checkpoint or an Ultralytics
+    YOLO-World checkpoint. If the dependency/model is unavailable, return None
+    and let the OpenCV paths continue.
+    """
+    if not _cfg("SIGN_YOLO_ENABLED", True):
+        return None
+    model_name = str(_cfg("SIGN_YOLO_MODEL", "yolov8s-worldv2.pt")).strip()
+    if not model_name:
+        return None
+    try:
+        from ultralytics import YOLO, YOLOWorld
+    except Exception:
+        return None
+
+    try:
+        looks_like_world = "world" in model_name.lower()
+        model_cls = YOLOWorld if looks_like_world else YOLO
+        model = model_cls(model_name)
+        prompts = [
+            item.strip()
+            for item in str(_cfg(
+                "SIGN_YOLO_PROMPTS",
+                "street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign",
+            )).split(",")
+            if item.strip()
+        ]
+        if looks_like_world and prompts and hasattr(model, "set_classes"):
+            model.set_classes(prompts)
+        return model
+    except Exception:
+        return None
+
+
+def _model_names(model) -> Dict[int, str]:
+    names = getattr(model, "names", {}) or {}
+    if isinstance(names, dict):
+        return {int(k): str(v) for k, v in names.items()}
+    return {idx: str(name) for idx, name in enumerate(names)}
+
+
+def _is_sign_class(label: str) -> bool:
+    label_l = (label or "").lower().replace("_", " ").replace("-", " ")
+    keywords = [
+        item.strip().lower()
+        for item in str(_cfg(
+            "SIGN_YOLO_CLASS_KEYWORDS",
+            "sign,street sign,road sign,highway sign,traffic sign,stop sign,route sign,exit sign",
+        )).split(",")
+        if item.strip()
+    ]
+    return any(keyword in label_l for keyword in keywords)
+
+
+def _learned_sign_candidates(image) -> List[Dict]:
+    """Return sign boxes from an optional YOLO/YOLO-World detector."""
+    model = _load_yolo_model()
+    if model is None or image is None:
+        return []
+
+    height, width = image.shape[:2]
+    image_area = float(width * height)
+    if image_area <= 0:
+        return []
+
+    try:
+        results = model.predict(
+            image,
+            conf=float(_cfg("SIGN_YOLO_CONFIDENCE", 0.05)),
+            iou=float(_cfg("SIGN_YOLO_IOU", 0.50)),
+            verbose=False,
+        )
+    except Exception:
+        return []
+
+    names = _model_names(model)
+    regions: List[Dict] = []
+    max_area = float(_cfg("SIGN_YOLO_MAX_AREA_PERCENT", 0.40))
+    min_area = float(_cfg("SIGN_YOLO_MIN_AREA_PERCENT", 0.0002))
+    for result in results or []:
+        boxes = getattr(result, "boxes", None)
+        if boxes is None:
+            continue
+        for box in boxes:
+            try:
+                xyxy = box.xyxy[0].detach().cpu().numpy().tolist()
+                cls_id = int(box.cls[0].detach().cpu().item()) if box.cls is not None else -1
+                conf = float(box.conf[0].detach().cpu().item()) if box.conf is not None else 0.0
+            except Exception:
+                continue
+            label = names.get(cls_id, str(cls_id))
+            if not _is_sign_class(label):
+                continue
+            x1, y1, x2, y2 = xyxy
+            x = int(round(max(0, min(x1, width - 1))))
+            y = int(round(max(0, min(y1, height - 1))))
+            w = int(round(max(1, min(x2, width) - x)))
+            h = int(round(max(1, min(y2, height) - y)))
+            area_pct = (w * h) / image_area
+            if area_pct < min_area or area_pct > max_area:
+                continue
+            if w < _cfg("SIGN_YOLO_MIN_WIDTH", 12) or h < _cfg("SIGN_YOLO_MIN_HEIGHT", 8):
+                continue
+            regions.append({
+                "box": (x, y, w, h),
+                "confidence": round(conf, 3),
+                "reason": f"learned_sign_detector label={label}, area={area_pct:.4f}, score={conf:.3f}",
+            })
+    return regions
 
 def _color_sign_masks(image) -> List[Tuple[str, np.ndarray]]:
     """Return HSV masks for common traffic/street-sign colors.
@@ -291,10 +407,25 @@ def _color_sign_candidates(image) -> List[Dict]:
             score = _color_box_score(image, (x, y, w, h), contour_area, color_name)
             if score < _cfg("SIGN_COLOR_MIN_CONFIDENCE", 0.45):
                 continue
+            area_pct = (w * h) / image_area
+            reason = f"{color_name} region area={area_pct:.4f}, score={score:.3f}"
+            aspect = w / max(float(h), 1.0)
+            # A colorful license plate in the lower half of a vehicle image can
+            # otherwise look like a small blue/green road sign. Reclassify these
+            # compact lower-image color panels so OCR uses plate validation and
+            # does not emit a false Street Sign result.
+            if (
+                _cfg("SIGN_COLOR_LOWER_IMAGE_PLATE_RECLASSIFY", True)
+                and color_name in {"blue_sign_color", "green_sign_color"}
+                and (y / float(height)) >= _cfg("SIGN_COLOR_PLATE_RECLASSIFY_MIN_Y_PERCENT", 0.45)
+                and area_pct <= _cfg("SIGN_COLOR_PLATE_RECLASSIFY_MAX_AREA_PERCENT", 0.030)
+                and aspect <= _cfg("SIGN_COLOR_PLATE_RECLASSIFY_MAX_ASPECT", 3.8)
+            ):
+                reason = f"license_plate_candidate from_{color_name} area={area_pct:.4f}, aspect={aspect:.2f}, score={score:.3f}"
             region = {
                 "box": (x, y, w, h),
                 "confidence": round(score, 3),
-                "reason": f"{color_name} region area={(w * h) / image_area:.4f}, score={score:.3f}",
+                "reason": reason,
             }
             rotated_crop = _rotated_crop_from_contour(image, contour)
             if rotated_crop is not None and rotated_crop.size > 0:
@@ -323,6 +454,14 @@ def _license_plate_candidates(image) -> List[Dict]:
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
+    # Near-grayscale road scenes are a common source of false plate reads.
+    # Handling them well needs slower OCR/detection retries, so skip this
+    # optional path by default.
+    if _cfg("LICENSE_PLATE_SKIP_LOW_SATURATION", True):
+        mean_saturation = float(hsv[:, :, 1].mean())
+        if mean_saturation < _cfg("LICENSE_PLATE_MIN_IMAGE_SATURATION", 12.0):
+            return []
+
     # Bright, low-to-moderate saturation rectangular panels. Include slightly
     # colored plates by allowing saturation up to ~120.
     plate_mask = cv2.inRange(hsv, np.array([0, 0, 120]), np.array([180, 125, 255]))
@@ -345,6 +484,11 @@ def _license_plate_candidates(image) -> List[Dict]:
         x, y, w, h = _clip_box(cv2.boundingRect(contour), width, height)
         area_pct = (w * h) / image_area
         aspect = w / max(float(h), 1.0)
+        # Avoid tree/sky/overhead-sign false positives being treated as license plates.
+        # Vehicle plates are normally in the lower portion of incident photos.
+        min_y_pct = _cfg("LICENSE_PLATE_MIN_Y_PERCENT", 0.30)
+        if (y / float(height)) < min_y_pct:
+            continue
         if area_pct < min_area_pct or area_pct > max_area_pct:
             continue
         if w < min_w or h < min_h:
@@ -454,6 +598,9 @@ def detect(image) -> List[Dict]:
         return []
 
     candidates: List[Dict] = []
+    # Learned detector first: it catches street/highway signs that color/contour
+    # heuristics often miss. The heuristic paths remain as a no-install fallback.
+    candidates.extend(_learned_sign_candidates(image))
     if _cfg("SIGN_COLOR_DETECTION_ENABLED", True):
         candidates.extend(_color_sign_candidates(image))
     candidates.extend(_license_plate_candidates(image))
